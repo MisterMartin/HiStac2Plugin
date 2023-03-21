@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33502.453
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StacHiPlugin", "StacHiPlugin\StacHiPlugin.csproj", "{06EA1A7C-0E68-4903-913A-EEB964A5AE7D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{06EA1A7C-0E68-4903-913A-EEB964A5AE7D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{06EA1A7C-0E68-4903-913A-EEB964A5AE7D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{06EA1A7C-0E68-4903-913A-EEB964A5AE7D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{06EA1A7C-0E68-4903-913A-EEB964A5AE7D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8A53DA2E-5C49-4F5C-901D-6B4CD8E7753C}
+	EndGlobalSection
+EndGlobal
