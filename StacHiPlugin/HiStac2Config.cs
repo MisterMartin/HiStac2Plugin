@@ -8,9 +8,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace StacHiPlugin
+namespace HiStack2Plugin
 {
-    public partial class StacHiConfig : UserControl
+    public partial class HiStack2Config : UserControl
     {
         public int DaisyChainIndex
         {
@@ -24,7 +24,7 @@ namespace StacHiPlugin
             set { serialNumberTextBox.Text = value; }
         }
 
-        public StacHiConfig()
+        public HiStack2Config()
         {
             InitializeComponent();
         }

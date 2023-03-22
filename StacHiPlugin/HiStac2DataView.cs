@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace StacHiPlugin
+namespace HiStack2Plugin
 {
-    public partial class StacHiDataView : UserControl
+    public partial class HiStac2DataView : UserControl
     {
-        public StacHiDataView()
+        public HiStac2DataView()
         {
             InitializeComponent();
         }

@@ -46,28 +46,28 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="StackHiConfig.cs">
+    <Compile Include="HiStac2Config.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="StackHiConfig.Designer.cs">
-      <DependentUpon>StackHiConfig.cs</DependentUpon>
+    <Compile Include="HiStac2Config.Designer.cs">
+      <DependentUpon>HiStac2Config.cs</DependentUpon>
     </Compile>
-    <Compile Include="StacHiDataView.cs">
+    <Compile Include="HiStac2DataView.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="StacHiDataView.Designer.cs">
-      <DependentUpon>StacHiDataView.cs</DependentUpon>
+    <Compile Include="HiStac2DataView.Designer.cs">
+      <DependentUpon>HiStac2DataView.cs</DependentUpon>
     </Compile>
-    <Compile Include="StacHiPlugin.cs" />
+    <Compile Include="HiStac2Plugin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="StackHiConfig.resx">
-      <DependentUpon>StackHiConfig.cs</DependentUpon>
+    <EmbeddedResource Include="HiStac2Config.resx">
+      <DependentUpon>HiStac2Config.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="StacHiDataView.resx">
-      <DependentUpon>StacHiDataView.cs</DependentUpon>
+    <EmbeddedResource Include="HiStac2DataView.resx">
+      <DependentUpon>HiStac2DataView.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

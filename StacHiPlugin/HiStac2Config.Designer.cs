@@ -1,6 +1,6 @@
-﻿namespace StacHiPlugin
+﻿namespace HiStack2Plugin
 {
-    partial class StacHiConfig
+    partial class HiStack2Config
     {
         /// <summary> 
         /// Required designer variable.
@@ -50,7 +50,7 @@
             this.groupBox1.Size = new System.Drawing.Size(608, 305);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "StacHi Configuration";
+            this.groupBox1.Text = "HiStack2 Configuration";
             // 
             // multipleInstrumentsControl1
             // 
@@ -79,13 +79,13 @@
             this.serialNumberTextBox.Size = new System.Drawing.Size(238, 31);
             this.serialNumberTextBox.TabIndex = 0;
             // 
-            // StacHiConfig
+            // HiStack2Config
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.groupBox1);
             this.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
-            this.Name = "StacHiConfig";
+            this.Name = "HiStack2Config";
             this.Size = new System.Drawing.Size(620, 200);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

@@ -8,23 +8,59 @@ using System.Xml;
 using System.Xml.Linq;
 using PluginReference;
 
-namespace StacHiPlugin
+namespace HiStack2Plugin
 {
-    public class StacHiPlugin : PluginBase
+    public class HiStac2Plugin : PluginBase
     {
-        private StacHiConfig configControl;
+        private HiStack2Config configControl;
         private Panel configPanel = null;
         private string serialNumber;
         private int daisyChainIndex;
 
-        private StacHiDataView dataViewControl;
+        private HiStac2DataView dataViewControl;
         private Panel dataViewPanel = null;
+
+        /**
+
+        ** 1st STAC with reduced data
+        OPC_300, 2);                                            //300nm Bin
+        OPC_300 - OPC_500, 1);                                  //500nm difference
+        OPC_500 - OPC_700, 1);                                  //700nm difference
+        OPC_700 - OPC_1000, 1);                                 //1000nm difference
+        OPC_1000 - OPC_3000, 1);                                //3000nm Bin
+        byte(IPump1), 1);                                       //Pump1 current in mA
+        byte(IPump2), 1);                                       //Pump1 current in mA
+        byte((TempPump1 + TempPump2) / 2.0 + 100.0), 1);
+        byte(VBat* 10.0), 1);                                   //Battery voltage *10
+        short(TempCN* 100.0), 2);                               //Saturator T
+        byte(TempIce + 10.0) * 10, 1);                          //Ice Jacket T
+        byte(alt_status), 1);                                   //Status byte for altitude source
+
+        ** 2nd STAC with reduced data 
+        CNC_300, 2); //300nm Bin
+        (CNC_300 - CNC_500), 1);                                //500nm Difference
+        (CNC_500 - CNC_700), 1);                                //700nm Diffenence
+        (CNC_700 - CNC_1000), 1);                               //1000nm Diffenence
+        (CNC_1000 - CNC_3000), 1);                              //3000nm Diffenence
+        byte(CN_IPump1), 1);                                    //Pump1 current in mA
+        byte(CN_IPump2), 1);                                    //Pump1 current in mA
+        byte((CN_TempPump1 + CN_TempPump2) / 2.0 + 100.0), 1);
+        byte(CN_VBat), 1);                                      //Battery voltage *10
+        short(CN_TempCN* 100.0), 2);                            //Saturator T
+        byte((CN_TempIce + 10.0) * 10), 1);                     //Condenser T 1
+
+        ** Heated Inlet
+        byte(CN_T_UpStream), 1);
+        byte(CN_T_Middle), 1);
+        byte(CN_T_DownStream), 1);
+        byte(CN_HI_V_Battery*10.0), 1);
+        **/
         private double temperature, pressure;
 
         /**
          * The name of the plugin's instrument, to be shown in the GUI.  
          */
-        override public string InstrumentName { get { return "StacHi"; } }
+        override public string InstrumentName { get { return "HiStack2"; } }
 
         /**
          * A sentence or two describing the instrument in more detail.  
@@ -41,7 +77,7 @@ namespace StacHiPlugin
                 configPanel = new Panel();
                 configPanel.AutoSize = true;
 
-                configControl = new StacHiConfig();
+                configControl = new HiStack2Config();
                 configPanel.Controls.Add(configControl);
             }
 
@@ -71,7 +107,7 @@ namespace StacHiPlugin
                 dataViewPanel = new Panel();
                 dataViewPanel.Dock = DockStyle.Fill;
 
-                dataViewControl = new StacHiDataView();
+                dataViewControl = new HiStac2DataView();
 
                 dataViewPanel.Controls.Add(dataViewControl);
                 dataViewPanel.Size = dataViewControl.Size;//this line has been added to make the auto sizing work
@@ -87,8 +123,8 @@ namespace StacHiPlugin
          */
         override public void OutputRawconfigXML(XmlTextWriter xmlWriter)
         {
-            xmlWriter.WriteElementString("StacHiSerialNumber", serialNumber);
-            xmlWriter.WriteElementString("StacHiDaisyChainIndex", daisyChainIndex.ToString());
+            xmlWriter.WriteElementString("HiStack2SerialNumber", serialNumber);
+            xmlWriter.WriteElementString("HiStack2DaisyChainIndex", daisyChainIndex.ToString());
         }
 
         /**
@@ -99,7 +135,7 @@ namespace StacHiPlugin
         {
             XDocument doc = XDocument.Load(filename);
 
-            var serialNumberElements = doc.Descendants("StacHiSerialNumber");
+            var serialNumberElements = doc.Descendants("HiStack2SerialNumber");
             if (serialNumberElements.Count() > 0)
             {
                 serialNumber = serialNumberElements.First().Value;
@@ -110,7 +146,7 @@ namespace StacHiPlugin
                 this.Enabled = true;
             }
 
-            var daisyChainIndexElements = doc.Descendants("StacHiDaisyChainIndex");
+            var daisyChainIndexElements = doc.Descendants("HiStack2DaisyChainIndex");
             daisyChainIndex = 0;
             if (daisyChainIndexElements.Count() > 0)
             {
@@ -159,7 +195,7 @@ namespace StacHiPlugin
          */
         override public string OutputCSVMetadataLines()
         {
-            return string.Format("StacHi Serial Number:, {0}", serialNumber);
+            return string.Format("HiStack2 Serial Number:, {0}", serialNumber);
         }
 
         /**
@@ -168,7 +204,7 @@ namespace StacHiPlugin
          */
         override public string OutputCSVHeaderSegment()
         {
-            return ", StacHi Temperature [deg C], StacHi Pressure [mb]";
+            return ", HiStack2 Temperature [deg C], HiStack2 Pressure [mb]";
         }
 
         /**

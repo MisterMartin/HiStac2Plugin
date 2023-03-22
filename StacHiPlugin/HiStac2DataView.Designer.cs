@@ -1,6 +1,6 @@
-﻿namespace StacHiPlugin
+﻿namespace HiStack2Plugin
 {
-    partial class StacHiDataView
+    partial class HiStac2DataView
     {
         /// <summary> 
         /// Required designer variable.
@@ -52,7 +52,7 @@
             this.groupBox1.Size = new System.Drawing.Size(468, 117);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "StacHi Data";
+            this.groupBox1.Text = "HiStack2 Data";
             // 
             // pressureLabel
             // 
@@ -94,13 +94,13 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Temperature: ";
             // 
-            // StacHiDataView
+            // HiStack2DataView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.groupBox1);
             this.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
-            this.Name = "StacHiDataView";
+            this.Name = "HiStack2DataView";
             this.Size = new System.Drawing.Size(480, 129);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
