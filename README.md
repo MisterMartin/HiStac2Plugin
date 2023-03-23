@@ -1,6 +1,7 @@
-# StacHiPlugin
+# HiStac2Plugin
 
-SkySonde plugin for the LASP instrument configuration:
+SkySonde plugin for the LASP instrument configuration 
+consisting of a Heated Inlet and 2x STACs:
 
 Heated Inlet -> STAC2 -> STAC1
 
