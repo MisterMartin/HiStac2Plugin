@@ -184,16 +184,71 @@ namespace HiStack2Plugin
             pressure = ((double)pressureInt) / 100;
             temperature = ((double)ptempInt) / 100;
 
+            double OPC_300 = 0.0;
+            double OPC_300_500 = 0.0;
+            double OPC_500_700 = 0.0;
+            double OPC_700_1000 = 0.0;
+            double OPC_1000_3000 = 0.0;
+            double OPC_Pump1 = 0.0;
+            double OPC_Pump2 = 0.0;
+            double OPC_Pump1_2Temp = 0.0;
+            double OPC_VBat = 0.0;
+            double OPC_SatTemp = 0.0;
+            double OPC_IceJacketTemp = 0.0;
+            double OPC_AltStatus = 0.0;
+            double CNC_300 = 0.0;
+            double CNC_300_500 = 0.0;
+            double CNC_500_700 = 0.0;
+            double CNC_700_1000 = 0.0;
+            double CNC_1000_3000 = 0.0;
+            double CNC_Pump1 = 0.0;
+            double CNC_Pump2 = 0.0;
+            double CNC_Pump1_2Temp = 0.0;
+            double CNC_VBat = 0.0;
+            double CNC_SatTemp = 0.0;
+            double CNC_CondenserTemp = 0.0;
+            double HI_UpstreamTemp = 0.0;
+            double HI_MidstreamTemp = 0.0;
+            double HI_DownstreamTemp = 0.0;
+            double HI_VBat = 0.0;
+
             //update the GUI using the data view control
-            dataViewControl.UpdateData(temperature, pressure);
+            dataViewControl.UpdateData(
+                OPC_300,
+                OPC_300_500,
+                OPC_500_700,
+                OPC_700_1000,
+                OPC_1000_3000,
+                OPC_Pump1,
+                OPC_Pump2,
+                OPC_Pump1_2Temp,
+                OPC_VBat,
+                OPC_SatTemp,
+                OPC_IceJacketTemp,
+                OPC_AltStatus,
+                CNC_300,
+                CNC_300_500,
+                CNC_500_700,
+                CNC_700_1000,
+                CNC_1000_3000,
+                CNC_Pump1,
+                CNC_Pump2,
+                CNC_Pump1_2Temp,
+                CNC_VBat,
+                CNC_SatTemp,
+                CNC_CondenserTemp,
+                HI_UpstreamTemp,
+                HI_MidstreamTemp,
+                HI_DownstreamTemp,
+                HI_VBat);
         }
 
-        /**
-         * Output instrument metadata lines to the top of the CSV file in the format:
-         * name1:, value1
-         * name2:, value2
-         */
-        override public string OutputCSVMetadataLines()
+    /**
+     * Output instrument metadata lines to the top of the CSV file in the format:
+     * name1:, value1
+     * name2:, value2
+     */
+    override public string OutputCSVMetadataLines()
         {
             return string.Format("HiStack2 Serial Number:, {0}", serialNumber);
         }

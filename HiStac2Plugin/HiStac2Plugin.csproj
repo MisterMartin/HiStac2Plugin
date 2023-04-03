@@ -7,8 +7,8 @@
     <ProjectGuid>{06EA1A7C-0E68-4903-913A-EEB964A5AE7D}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>StacHiPlugin</RootNamespace>
-    <AssemblyName>StacHPlugin</AssemblyName>
+    <RootNamespace>HiStac2lugin</RootNamespace>
+    <AssemblyName>HiStac2Plugin</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
