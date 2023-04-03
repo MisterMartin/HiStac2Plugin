@@ -56,6 +56,33 @@ namespace HiStack2Plugin
         byte(CN_HI_V_Battery*10.0), 1);
         **/
         private double temperature, pressure;
+        private double OPC_300 = 0.0;
+        private double OPC_300_500 = 0.0;
+        private double OPC_500_700 = 0.0;
+        private double OPC_700_1000 = 0.0;
+        private double OPC_1000_3000 = 0.0;
+        private double OPC_Pump1 = 0.0;
+        private double OPC_Pump2 = 0.0;
+        private double OPC_Pump1_2Temp = 0.0;
+        private double OPC_VBat = 0.0;
+        private double OPC_SatTemp = 0.0;
+        private double OPC_IceJacketTemp = 0.0;
+        private double OPC_AltStatus = 0.0;
+        private double CNC_300 = 0.0;
+        private double CNC_300_500 = 0.0;
+        private double CNC_500_700 = 0.0;
+        private double CNC_700_1000 = 0.0;
+        private double CNC_1000_3000 = 0.0;
+        private double CNC_Pump1 = 0.0;
+        private double CNC_Pump2 = 0.0;
+        private double CNC_Pump1_2Temp = 0.0;
+        private double CNC_VBat = 0.0;
+        private double CNC_SatTemp = 0.0;
+        private double CNC_CondenserTemp = 0.0;
+        private double HI_UpstreamTemp = 0.0;
+        private double HI_MidstreamTemp = 0.0;
+        private double HI_DownstreamTemp = 0.0;
+        private double HI_VBat = 0.0;
 
         /**
          * The name of the plugin's instrument, to be shown in the GUI.  
@@ -65,7 +92,7 @@ namespace HiStack2Plugin
         /**
          * A sentence or two describing the instrument in more detail.  
          */
-        override public string InstrumentDescription { get { return "STAC with Heated Inlet"; } }
+        override public string InstrumentDescription { get { return "OPC, CNC and Heated Inlet"; } }
 
         /**
          * Create and return a Windows Forms Panel containing any setup/configuration/metadata controls required by the plugin instrument.  
@@ -184,33 +211,6 @@ namespace HiStack2Plugin
             pressure = ((double)pressureInt) / 100;
             temperature = ((double)ptempInt) / 100;
 
-            double OPC_300 = 0.0;
-            double OPC_300_500 = 0.0;
-            double OPC_500_700 = 0.0;
-            double OPC_700_1000 = 0.0;
-            double OPC_1000_3000 = 0.0;
-            double OPC_Pump1 = 0.0;
-            double OPC_Pump2 = 0.0;
-            double OPC_Pump1_2Temp = 0.0;
-            double OPC_VBat = 0.0;
-            double OPC_SatTemp = 0.0;
-            double OPC_IceJacketTemp = 0.0;
-            double OPC_AltStatus = 0.0;
-            double CNC_300 = 0.0;
-            double CNC_300_500 = 0.0;
-            double CNC_500_700 = 0.0;
-            double CNC_700_1000 = 0.0;
-            double CNC_1000_3000 = 0.0;
-            double CNC_Pump1 = 0.0;
-            double CNC_Pump2 = 0.0;
-            double CNC_Pump1_2Temp = 0.0;
-            double CNC_VBat = 0.0;
-            double CNC_SatTemp = 0.0;
-            double CNC_CondenserTemp = 0.0;
-            double HI_UpstreamTemp = 0.0;
-            double HI_MidstreamTemp = 0.0;
-            double HI_DownstreamTemp = 0.0;
-            double HI_VBat = 0.0;
 
             //update the GUI using the data view control
             dataViewControl.UpdateData(
