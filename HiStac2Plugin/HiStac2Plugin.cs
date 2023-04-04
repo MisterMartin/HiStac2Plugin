@@ -87,12 +87,12 @@ namespace HiStack2Plugin
         /**
          * The name of the plugin's instrument, to be shown in the GUI.  
          */
-        override public string InstrumentName { get { return "HiStack2"; } }
+        override public string InstrumentName { get { return "HiStack2 Plugin v1.0"; } }
 
         /**
          * A sentence or two describing the instrument in more detail.  
          */
-        override public string InstrumentDescription { get { return "OPC, CNC and Heated Inlet"; } }
+        override public string InstrumentDescription { get { return "STAC1, STAC2 and Heated Inlet"; } }
 
         /**
          * Create and return a Windows Forms Panel containing any setup/configuration/metadata controls required by the plugin instrument.  

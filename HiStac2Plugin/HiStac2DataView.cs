@@ -18,29 +18,29 @@ namespace HiStack2Plugin
         }
 
         private delegate void UpdateDataDelegate(
-                    double OPC_300,
-                    double OPC_300_500,
-                    double OPC_500_700,
-                    double OPC_700_1000,
-                    double OPC_1000_3000,
-                    double OPC_Pump1,
-                    double OPC_Pump2,
-                    double OPC_Pump1_2Temp,
-                    double OPC_VBat,
-                    double OPC_SatTemp,
-                    double OPC_IceJacketTemp,
-                    double OPC_AltStatus,
-                    double CNC_300,
-                    double CNC_300_500,
-                    double CNC_500_700,
-                    double CNC_700_1000,
-                    double CNC_1000_3000,
-                    double CNC_Pump1,
-                    double CNC_Pump2,
-                    double CNC_Pump1_2Temp,
-                    double CNC_VBat,
-                    double CNC_SatTemp,
-                    double CNC_CondenserTemp,
+                    double STAC1_300,
+                    double STAC1_300_500,
+                    double STAC1_500_700,
+                    double STAC1_700_1000,
+                    double STAC1_1000_3000,
+                    double STAC1_Pump1,
+                    double STAC1_Pump2,
+                    double STAC1_Pump1_2Temp,
+                    double STAC1_VBat,
+                    double STAC1_SatTemp,
+                    double STAC1_IceJacketTemp,
+                    double STAC1_AltStatus,
+                    double STAC2_300,
+                    double STAC2_300_500,
+                    double STAC2_500_700,
+                    double STAC2_700_1000,
+                    double STAC2_1000_3000,
+                    double STAC2_Pump1,
+                    double STAC2_Pump2,
+                    double STAC2_Pump1_2Temp,
+                    double STAC2_VBat,
+                    double STAC2_SatTemp,
+                    double STAC2_CondenserTemp,
                     double HI_UpstreamTemp,
                     double HI_MidstreamTemp,
                     double HI_DownstreamTemp,
@@ -48,29 +48,29 @@ namespace HiStack2Plugin
                     );
 
         public void UpdateData(
-                    double OPC_300,
-                    double OPC_300_500,
-                    double OPC_500_700,
-                    double OPC_700_1000,
-                    double OPC_1000_3000,
-                    double OPC_Pump1,
-                    double OPC_Pump2,
-                    double OPC_Pump1_2Temp,
-                    double OPC_VBat,
-                    double OPC_SatTemp,
-                    double OPC_IceJacketTemp,
-                    double OPC_AltStatus,
-                    double CNC_300,
-                    double CNC_300_500,
-                    double CNC_500_700,
-                    double CNC_700_1000,
-                    double CNC_1000_3000,
-                    double CNC_Pump1,
-                    double CNC_Pump2,
-                    double CNC_Pump1_2Temp,
-                    double CNC_VBat,
-                    double CNC_SatTemp,
-                    double CNC_CondenserTemp,
+                    double STAC1_300,
+                    double STAC1_300_500,
+                    double STAC1_500_700,
+                    double STAC1_700_1000,
+                    double STAC1_1000_3000,
+                    double STAC1_Pump1,
+                    double STAC1_Pump2,
+                    double STAC1_Pump1_2Temp,
+                    double STAC1_VBat,
+                    double STAC1_SatTemp,
+                    double STAC1_IceJacketTemp,
+                    double STAC1_AltStatus,
+                    double STAC2_300,
+                    double STAC2_300_500,
+                    double STAC2_500_700,
+                    double STAC2_700_1000,
+                    double STAC2_1000_3000,
+                    double STAC2_Pump1,
+                    double STAC2_Pump2,
+                    double STAC2_Pump1_2Temp,
+                    double STAC2_VBat,
+                    double STAC2_SatTemp,
+                    double STAC2_CondenserTemp,
                     double HI_UpstreamTemp,
                     double HI_MidstreamTemp,
                     double HI_DownstreamTemp,
@@ -80,29 +80,29 @@ namespace HiStack2Plugin
             if (this.InvokeRequired)
             {
                 this.BeginInvoke(new UpdateDataDelegate(UpdateData), new object[] {
-                                    OPC_300,
-                                    OPC_300_500,
-                                    OPC_500_700,
-                                    OPC_700_1000,
-                                    OPC_1000_3000,
-                                    OPC_Pump1,
-                                    OPC_Pump2,
-                                    OPC_Pump1_2Temp,
-                                    OPC_VBat,
-                                    OPC_SatTemp,
-                                    OPC_IceJacketTemp,
-                                    OPC_AltStatus,
-                                    CNC_300,
-                                    CNC_300_500,
-                                    CNC_500_700,
-                                    CNC_700_1000,
-                                    CNC_1000_3000,
-                                    CNC_Pump1,
-                                    CNC_Pump2,
-                                    CNC_Pump1_2Temp,
-                                    CNC_VBat,
-                                    CNC_SatTemp,
-                                    CNC_CondenserTemp,
+                                    STAC1_300,
+                                    STAC1_300_500,
+                                    STAC1_500_700,
+                                    STAC1_700_1000,
+                                    STAC1_1000_3000,
+                                    STAC1_Pump1,
+                                    STAC1_Pump2,
+                                    STAC1_Pump1_2Temp,
+                                    STAC1_VBat,
+                                    STAC1_SatTemp,
+                                    STAC1_IceJacketTemp,
+                                    STAC1_AltStatus,
+                                    STAC2_300,
+                                    STAC2_300_500,
+                                    STAC2_500_700,
+                                    STAC2_700_1000,
+                                    STAC2_1000_3000,
+                                    STAC2_Pump1,
+                                    STAC2_Pump2,
+                                    STAC2_Pump1_2Temp,
+                                    STAC2_VBat,
+                                    STAC2_SatTemp,
+                                    STAC2_CondenserTemp,
                                     HI_UpstreamTemp,
                                     HI_MidstreamTemp,
                                     HI_DownstreamTemp,
@@ -110,30 +110,30 @@ namespace HiStack2Plugin
             }
             else
             {
-                OPC_300Label.Text = string.Format("{0:0.00} [deg C]", OPC_300);
-                OPC_300_500Label.Text = string.Format("{0:0.00} [deg C]", OPC_300_500);
-                OPC_500_700Label.Text = string.Format("{0:0.00} [deg C]", OPC_500_700);
-                OPC_700_1000Label.Text = string.Format("{0:0.00} [deg C]", OPC_700_1000);
-                OPC_1000_3000Label.Text = string.Format("{0:0.00} [deg C]", OPC_1000_3000);
-                OPC_Pump1CurrentLabel.Text = string.Format("{0:0.00} [deg C]", OPC_Pump1);
-                OPC_Pump2CurrentLabel.Text = string.Format("{0:0.00} [deg C]", OPC_Pump2);
-                OPC_Pump1_2TempLabel.Text = string.Format("{0:0.00} [deg C]", OPC_Pump1_2Temp);
-                OPC_VBatLabel.Text = string.Format("{0:0.00} [deg C]", OPC_VBat);
-                OPC_SaturatorTempLabel.Text = string.Format("{0:0.00} [deg C]", OPC_SatTemp);
-                OPC_IceJacketTempLabel.Text = string.Format("{0:0.00} [deg C]", OPC_IceJacketTemp);
-                OPC_AltSourceLabel.Text = string.Format("{0:0.00} [deg C]", OPC_AltStatus);
+                STAC1_300Label.Text = string.Format("{0:0.00} [deg C]", STAC1_300);
+                STAC1_300_500Label.Text = string.Format("{0:0.00} [deg C]", STAC1_300_500);
+                STAC1_500_700Label.Text = string.Format("{0:0.00} [deg C]", STAC1_500_700);
+                STAC1_700_1000Label.Text = string.Format("{0:0.00} [deg C]", STAC1_700_1000);
+                STAC1_1000_3000Label.Text = string.Format("{0:0.00} [deg C]", STAC1_1000_3000);
+                STAC1_Pump1CurrentLabel.Text = string.Format("{0:0.00} [deg C]", STAC1_Pump1);
+                STAC1_Pump2CurrentLabel.Text = string.Format("{0:0.00} [deg C]", STAC1_Pump2);
+                STAC1_Pump1_2TempLabel.Text = string.Format("{0:0.00} [deg C]", STAC1_Pump1_2Temp);
+                STAC1_VBatLabel.Text = string.Format("{0:0.00} [deg C]", STAC1_VBat);
+                STAC1_SaturatorTempLabel.Text = string.Format("{0:0.00} [deg C]", STAC1_SatTemp);
+                STAC1_IceJacketTempLabel.Text = string.Format("{0:0.00} [deg C]", STAC1_IceJacketTemp);
+                STAC1_AltSourceLabel.Text = string.Format("{0:0.00} [deg C]", STAC1_AltStatus);
 
-                CNC_300Label.Text = string.Format("{0:0.00} [deg C]", CNC_300);
-                CNC_300_500Label.Text = string.Format("{0:0.00} [deg C]", CNC_300_500);
-                CNC_500_700Label.Text = string.Format("{0:0.00} [deg C]", CNC_500_700);
-                CNC_700_1000Label.Text = string.Format("{0:0.00} [deg C]", CNC_700_1000);
-                CNC_1000_3000Label.Text = string.Format("{0:0.00} [deg C]", CNC_1000_3000);
-                CNC_Pump1CurrentLabel.Text = string.Format("{0:0.00} [deg C]", CNC_Pump1);
-                CNC_Pump2CurrentLabel.Text = string.Format("{0:0.00} [deg C]", CNC_Pump2);
-                CNC_Pump1_2TempLabel.Text = string.Format("{0:0.00} [deg C]", CNC_Pump1_2Temp);
-                CNC_VBatLabel.Text = string.Format("{0:0.00} [deg C]", CNC_VBat);
-                CNC_SaturatorTempLabel.Text = string.Format("{0:0.00} [deg C]", CNC_SatTemp);
-                CNC_CondenserTempLabel.Text = string.Format("{0:0.00} [deg C]", CNC_CondenserTemp);
+                STAC2_300Label.Text = string.Format("{0:0.00} [deg C]", STAC2_300);
+                STAC2_300_500Label.Text = string.Format("{0:0.00} [deg C]", STAC2_300_500);
+                STAC2_500_700Label.Text = string.Format("{0:0.00} [deg C]", STAC2_500_700);
+                STAC2_700_1000Label.Text = string.Format("{0:0.00} [deg C]", STAC2_700_1000);
+                STAC2_1000_3000Label.Text = string.Format("{0:0.00} [deg C]", STAC2_1000_3000);
+                STAC2_Pump1CurrentLabel.Text = string.Format("{0:0.00} [deg C]", STAC2_Pump1);
+                STAC2_Pump2CurrentLabel.Text = string.Format("{0:0.00} [deg C]", STAC2_Pump2);
+                STAC2_Pump1_2TempLabel.Text = string.Format("{0:0.00} [deg C]", STAC2_Pump1_2Temp);
+                STAC2_VBatLabel.Text = string.Format("{0:0.00} [deg C]", STAC2_VBat);
+                STAC2_SaturatorTempLabel.Text = string.Format("{0:0.00} [deg C]", STAC2_SatTemp);
+                STAC2_CondenserTempLabel.Text = string.Format("{0:0.00} [deg C]", STAC2_CondenserTemp);
 
                 HI_UpstreamTempLabel.Text = string.Format("{0:0.00} [deg C]", HI_UpstreamTemp);
                 HI_MidstreamTempLabel.Text = string.Format("{0:0.00} [deg C]", HI_MidstreamTemp);
