@@ -33,11 +33,11 @@
             this.label30 = new System.Windows.Forms.Label();
             this.label29 = new System.Windows.Forms.Label();
             this.label28 = new System.Windows.Forms.Label();
-            this.STAC1_500_700Label = new System.Windows.Forms.Label();
-            this.STAC2_1000_3000Label = new System.Windows.Forms.Label();
-            this.STAC2_700_1000Label = new System.Windows.Forms.Label();
-            this.STAC2_500_700Label = new System.Windows.Forms.Label();
-            this.STAC2_300_500Label = new System.Windows.Forms.Label();
+            this.STAC1_700Label = new System.Windows.Forms.Label();
+            this.STAC2_3000Label = new System.Windows.Forms.Label();
+            this.STAC2_1000Label = new System.Windows.Forms.Label();
+            this.STAC2_700Label = new System.Windows.Forms.Label();
+            this.STAC2_500Label = new System.Windows.Forms.Label();
             this.STAC2_300Label = new System.Windows.Forms.Label();
             this.STAC1_AltSourceLabel = new System.Windows.Forms.Label();
             this.HI_BatVLabel = new System.Windows.Forms.Label();
@@ -55,10 +55,10 @@
             this.STAC2_Pump1CurrentLabel = new System.Windows.Forms.Label();
             this.STAC1_Pump2CurrentLabel = new System.Windows.Forms.Label();
             this.STAC1_Pump1CurrentLabel = new System.Windows.Forms.Label();
-            this.STAC1_1000_3000Label = new System.Windows.Forms.Label();
-            this.STAC1_700_1000Label = new System.Windows.Forms.Label();
+            this.STAC1_3000Label = new System.Windows.Forms.Label();
+            this.STAC1_1000Label = new System.Windows.Forms.Label();
             this.label24 = new System.Windows.Forms.Label();
-            this.STAC1_300_500Label = new System.Windows.Forms.Label();
+            this.STAC1_500Label = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.label25 = new System.Windows.Forms.Label();
             this.label26 = new System.Windows.Forms.Label();
@@ -98,11 +98,11 @@
             this.groupBox1.Controls.Add(this.label30);
             this.groupBox1.Controls.Add(this.label29);
             this.groupBox1.Controls.Add(this.label28);
-            this.groupBox1.Controls.Add(this.STAC1_500_700Label);
-            this.groupBox1.Controls.Add(this.STAC2_1000_3000Label);
-            this.groupBox1.Controls.Add(this.STAC2_700_1000Label);
-            this.groupBox1.Controls.Add(this.STAC2_500_700Label);
-            this.groupBox1.Controls.Add(this.STAC2_300_500Label);
+            this.groupBox1.Controls.Add(this.STAC1_700Label);
+            this.groupBox1.Controls.Add(this.STAC2_3000Label);
+            this.groupBox1.Controls.Add(this.STAC2_1000Label);
+            this.groupBox1.Controls.Add(this.STAC2_700Label);
+            this.groupBox1.Controls.Add(this.STAC2_500Label);
             this.groupBox1.Controls.Add(this.STAC2_300Label);
             this.groupBox1.Controls.Add(this.STAC1_AltSourceLabel);
             this.groupBox1.Controls.Add(this.HI_BatVLabel);
@@ -120,10 +120,10 @@
             this.groupBox1.Controls.Add(this.STAC2_Pump1CurrentLabel);
             this.groupBox1.Controls.Add(this.STAC1_Pump2CurrentLabel);
             this.groupBox1.Controls.Add(this.STAC1_Pump1CurrentLabel);
-            this.groupBox1.Controls.Add(this.STAC1_1000_3000Label);
-            this.groupBox1.Controls.Add(this.STAC1_700_1000Label);
+            this.groupBox1.Controls.Add(this.STAC1_3000Label);
+            this.groupBox1.Controls.Add(this.STAC1_1000Label);
             this.groupBox1.Controls.Add(this.label24);
-            this.groupBox1.Controls.Add(this.STAC1_300_500Label);
+            this.groupBox1.Controls.Add(this.STAC1_500Label);
             this.groupBox1.Controls.Add(this.label10);
             this.groupBox1.Controls.Add(this.label25);
             this.groupBox1.Controls.Add(this.label26);
@@ -196,55 +196,55 @@
             this.label28.TabIndex = 58;
             this.label28.Text = "-------------------------- STAC2 -------------------------";
             // 
-            // STAC1_500_700Label
+            // STAC1_700Label
             // 
-            this.STAC1_500_700Label.AutoSize = true;
-            this.STAC1_500_700Label.Location = new System.Drawing.Point(335, 148);
-            this.STAC1_500_700Label.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
-            this.STAC1_500_700Label.Name = "STAC1_500_700Label";
-            this.STAC1_500_700Label.Size = new System.Drawing.Size(89, 25);
-            this.STAC1_500_700Label.TabIndex = 57;
-            this.STAC1_500_700Label.Text = "n/a [#/cc]";
+            this.STAC1_700Label.AutoSize = true;
+            this.STAC1_700Label.Location = new System.Drawing.Point(335, 148);
+            this.STAC1_700Label.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.STAC1_700Label.Name = "STAC1_700Label";
+            this.STAC1_700Label.Size = new System.Drawing.Size(100, 25);
+            this.STAC1_700Label.TabIndex = 57;
+            this.STAC1_700Label.Text = "n/a [#/cc]";
             // 
-            // STAC2_1000_3000Label
+            // STAC2_3000Label
             // 
-            this.STAC2_1000_3000Label.AutoSize = true;
-            this.STAC2_1000_3000Label.Location = new System.Drawing.Point(335, 705);
-            this.STAC2_1000_3000Label.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
-            this.STAC2_1000_3000Label.Name = "STAC2_1000_3000Label";
-            this.STAC2_1000_3000Label.Size = new System.Drawing.Size(89, 25);
-            this.STAC2_1000_3000Label.TabIndex = 56;
-            this.STAC2_1000_3000Label.Text = "n/a [#/cc]";
+            this.STAC2_3000Label.AutoSize = true;
+            this.STAC2_3000Label.Location = new System.Drawing.Point(335, 705);
+            this.STAC2_3000Label.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.STAC2_3000Label.Name = "STAC2_3000Label";
+            this.STAC2_3000Label.Size = new System.Drawing.Size(100, 25);
+            this.STAC2_3000Label.TabIndex = 56;
+            this.STAC2_3000Label.Text = "n/a [#/cc]";
             // 
-            // STAC2_700_1000Label
+            // STAC2_1000Label
             // 
-            this.STAC2_700_1000Label.AutoSize = true;
-            this.STAC2_700_1000Label.Location = new System.Drawing.Point(335, 667);
-            this.STAC2_700_1000Label.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
-            this.STAC2_700_1000Label.Name = "STAC2_700_1000Label";
-            this.STAC2_700_1000Label.Size = new System.Drawing.Size(89, 25);
-            this.STAC2_700_1000Label.TabIndex = 55;
-            this.STAC2_700_1000Label.Text = "n/a [#/cc]";
+            this.STAC2_1000Label.AutoSize = true;
+            this.STAC2_1000Label.Location = new System.Drawing.Point(335, 667);
+            this.STAC2_1000Label.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.STAC2_1000Label.Name = "STAC2_1000Label";
+            this.STAC2_1000Label.Size = new System.Drawing.Size(100, 25);
+            this.STAC2_1000Label.TabIndex = 55;
+            this.STAC2_1000Label.Text = "n/a [#/cc]";
             // 
-            // STAC2_500_700Label
+            // STAC2_700Label
             // 
-            this.STAC2_500_700Label.AutoSize = true;
-            this.STAC2_500_700Label.Location = new System.Drawing.Point(335, 629);
-            this.STAC2_500_700Label.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
-            this.STAC2_500_700Label.Name = "STAC2_500_700Label";
-            this.STAC2_500_700Label.Size = new System.Drawing.Size(89, 25);
-            this.STAC2_500_700Label.TabIndex = 54;
-            this.STAC2_500_700Label.Text = "n/a [#/cc]";
+            this.STAC2_700Label.AutoSize = true;
+            this.STAC2_700Label.Location = new System.Drawing.Point(335, 629);
+            this.STAC2_700Label.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.STAC2_700Label.Name = "STAC2_700Label";
+            this.STAC2_700Label.Size = new System.Drawing.Size(100, 25);
+            this.STAC2_700Label.TabIndex = 54;
+            this.STAC2_700Label.Text = "n/a [#/cc]";
             // 
-            // STAC2_300_500Label
+            // STAC2_500Label
             // 
-            this.STAC2_300_500Label.AutoSize = true;
-            this.STAC2_300_500Label.Location = new System.Drawing.Point(335, 591);
-            this.STAC2_300_500Label.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
-            this.STAC2_300_500Label.Name = "STAC2_300_500Label";
-            this.STAC2_300_500Label.Size = new System.Drawing.Size(89, 25);
-            this.STAC2_300_500Label.TabIndex = 53;
-            this.STAC2_300_500Label.Text = "n/a [#/cc]";
+            this.STAC2_500Label.AutoSize = true;
+            this.STAC2_500Label.Location = new System.Drawing.Point(335, 591);
+            this.STAC2_500Label.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.STAC2_500Label.Name = "STAC2_500Label";
+            this.STAC2_500Label.Size = new System.Drawing.Size(100, 25);
+            this.STAC2_500Label.TabIndex = 53;
+            this.STAC2_500Label.Text = "n/a [#/cc]";
             // 
             // STAC2_300Label
             // 
@@ -252,7 +252,7 @@
             this.STAC2_300Label.Location = new System.Drawing.Point(335, 553);
             this.STAC2_300Label.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.STAC2_300Label.Name = "STAC2_300Label";
-            this.STAC2_300Label.Size = new System.Drawing.Size(89, 25);
+            this.STAC2_300Label.Size = new System.Drawing.Size(100, 25);
             this.STAC2_300Label.TabIndex = 52;
             this.STAC2_300Label.Text = "n/a [#/cc]";
             // 
@@ -400,23 +400,23 @@
             this.STAC1_Pump1CurrentLabel.TabIndex = 35;
             this.STAC1_Pump1CurrentLabel.Text = "n/a [mA]";
             // 
-            // STAC1_1000_3000Label
+            // STAC1_3000Label
             // 
-            this.STAC1_1000_3000Label.AutoSize = true;
-            this.STAC1_1000_3000Label.Location = new System.Drawing.Point(335, 224);
-            this.STAC1_1000_3000Label.Name = "STAC1_1000_3000Label";
-            this.STAC1_1000_3000Label.Size = new System.Drawing.Size(89, 25);
-            this.STAC1_1000_3000Label.TabIndex = 34;
-            this.STAC1_1000_3000Label.Text = "n/a [#/cc]";
+            this.STAC1_3000Label.AutoSize = true;
+            this.STAC1_3000Label.Location = new System.Drawing.Point(335, 224);
+            this.STAC1_3000Label.Name = "STAC1_3000Label";
+            this.STAC1_3000Label.Size = new System.Drawing.Size(100, 25);
+            this.STAC1_3000Label.TabIndex = 34;
+            this.STAC1_3000Label.Text = "n/a [#/cc]";
             // 
-            // STAC1_700_1000Label
+            // STAC1_1000Label
             // 
-            this.STAC1_700_1000Label.AutoSize = true;
-            this.STAC1_700_1000Label.Location = new System.Drawing.Point(335, 186);
-            this.STAC1_700_1000Label.Name = "STAC1_700_1000Label";
-            this.STAC1_700_1000Label.Size = new System.Drawing.Size(89, 25);
-            this.STAC1_700_1000Label.TabIndex = 33;
-            this.STAC1_700_1000Label.Text = "n/a [#/cc]";
+            this.STAC1_1000Label.AutoSize = true;
+            this.STAC1_1000Label.Location = new System.Drawing.Point(335, 186);
+            this.STAC1_1000Label.Name = "STAC1_1000Label";
+            this.STAC1_1000Label.Size = new System.Drawing.Size(100, 25);
+            this.STAC1_1000Label.TabIndex = 33;
+            this.STAC1_1000Label.Text = "n/a [#/cc]";
             // 
             // label24
             // 
@@ -427,15 +427,15 @@
             this.label24.TabIndex = 29;
             this.label24.Text = "Upstream Temp";
             // 
-            // STAC1_300_500Label
+            // STAC1_500Label
             // 
-            this.STAC1_300_500Label.AutoSize = true;
-            this.STAC1_300_500Label.Location = new System.Drawing.Point(335, 110);
-            this.STAC1_300_500Label.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
-            this.STAC1_300_500Label.Name = "STAC1_300_500Label";
-            this.STAC1_300_500Label.Size = new System.Drawing.Size(89, 25);
-            this.STAC1_300_500Label.TabIndex = 31;
-            this.STAC1_300_500Label.Text = "n/a [#/cc]";
+            this.STAC1_500Label.AutoSize = true;
+            this.STAC1_500Label.Location = new System.Drawing.Point(335, 110);
+            this.STAC1_500Label.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.STAC1_500Label.Name = "STAC1_500Label";
+            this.STAC1_500Label.Size = new System.Drawing.Size(100, 25);
+            this.STAC1_500Label.TabIndex = 31;
+            this.STAC1_500Label.Text = "n/a [#/cc]";
             // 
             // label10
             // 
@@ -514,18 +514,18 @@
             this.label16.AutoSize = true;
             this.label16.Location = new System.Drawing.Point(14, 667);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(173, 25);
+            this.label16.Size = new System.Drawing.Size(89, 25);
             this.label16.TabIndex = 20;
-            this.label16.Text = "700nm - 1000nm";
+            this.label16.Text = "1000nm";
             // 
             // label17
             // 
             this.label17.AutoSize = true;
             this.label17.Location = new System.Drawing.Point(14, 705);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(185, 25);
+            this.label17.Size = new System.Drawing.Size(89, 25);
             this.label17.TabIndex = 19;
-            this.label17.Text = "1000nm - 3000nm";
+            this.label17.Text = "3000nm";
             // 
             // label18
             // 
@@ -550,18 +550,18 @@
             this.label15.AutoSize = true;
             this.label15.Location = new System.Drawing.Point(14, 629);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(161, 25);
+            this.label15.Size = new System.Drawing.Size(77, 25);
             this.label15.TabIndex = 16;
-            this.label15.Text = "500nm - 700nm";
+            this.label15.Text = "700nm";
             // 
             // label14
             // 
             this.label14.AutoSize = true;
             this.label14.Location = new System.Drawing.Point(14, 591);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(161, 25);
+            this.label14.Size = new System.Drawing.Size(77, 25);
             this.label14.TabIndex = 15;
-            this.label14.Text = "300nm - 500nm";
+            this.label14.Text = "500nm";
             // 
             // label13
             // 
@@ -631,27 +631,27 @@
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(14, 224);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(144, 25);
+            this.label5.Size = new System.Drawing.Size(89, 25);
             this.label5.TabIndex = 6;
-            this.label5.Text = "1000-3000nm";
+            this.label5.Text = "3000nm";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(14, 186);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(132, 25);
+            this.label4.Size = new System.Drawing.Size(89, 25);
             this.label4.TabIndex = 5;
-            this.label4.Text = "700-1000nm";
+            this.label4.Text = "1000nm";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(14, 148);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(120, 25);
+            this.label3.Size = new System.Drawing.Size(77, 25);
             this.label3.TabIndex = 4;
-            this.label3.Text = "500-700nm";
+            this.label3.Text = "700nm";
             // 
             // STAC1_300Label
             // 
@@ -669,9 +669,9 @@
             this.label2.Location = new System.Drawing.Point(14, 110);
             this.label2.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(120, 25);
+            this.label2.Size = new System.Drawing.Size(77, 25);
             this.label2.TabIndex = 1;
-            this.label2.Text = "300-500nm";
+            this.label2.Text = "500nm";
             // 
             // label1
             // 
@@ -728,10 +728,10 @@
         private System.Windows.Forms.Label label27;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label STAC1_300Label;
-        private System.Windows.Forms.Label STAC1_300_500Label;
-        private System.Windows.Forms.Label STAC1_700_1000Label;
+        private System.Windows.Forms.Label STAC1_500Label;
+        private System.Windows.Forms.Label STAC1_1000Label;
         private System.Windows.Forms.Label STAC1_Pump1CurrentLabel;
-        private System.Windows.Forms.Label STAC1_1000_3000Label;
+        private System.Windows.Forms.Label STAC1_3000Label;
         private System.Windows.Forms.Label STAC2_Pump2CurrentLabel;
         private System.Windows.Forms.Label STAC2_Pump1CurrentLabel;
         private System.Windows.Forms.Label STAC1_Pump2CurrentLabel;
@@ -748,12 +748,12 @@
         private System.Windows.Forms.Label STAC2_CondenserTempLabel;
         private System.Windows.Forms.Label STAC2_SaturatorTempLabel;
         private System.Windows.Forms.Label STAC2_Pump1_2TempLabel;
-        private System.Windows.Forms.Label STAC2_1000_3000Label;
-        private System.Windows.Forms.Label STAC2_700_1000Label;
-        private System.Windows.Forms.Label STAC2_500_700Label;
-        private System.Windows.Forms.Label STAC2_300_500Label;
+        private System.Windows.Forms.Label STAC2_3000Label;
+        private System.Windows.Forms.Label STAC2_1000Label;
+        private System.Windows.Forms.Label STAC2_700Label;
+        private System.Windows.Forms.Label STAC2_500Label;
         private System.Windows.Forms.Label STAC2_300Label;
-        private System.Windows.Forms.Label STAC1_500_700Label;
+        private System.Windows.Forms.Label STAC1_700Label;
         private System.Windows.Forms.Label label29;
         private System.Windows.Forms.Label label28;
         private System.Windows.Forms.Label label30;

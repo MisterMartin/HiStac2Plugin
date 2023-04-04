@@ -14,71 +14,42 @@ namespace HiStack2Plugin
     {
         private HiStack2Config configControl;
         private Panel configPanel = null;
-        private string serialNumber;
         private int daisyChainIndex;
+
+        private string Stac1SerialNumber;
+        private double Stac1FlowRate;
+        private string Stac2SerialNumber;
+        private double Stac2FlowRate;
 
         private HiStac2DataView dataViewControl;
         private Panel dataViewPanel = null;
 
-        /**
+        // The decoded parameters
+        private double STAC1_300 = 0.0;
+        private double STAC1_500 = 0.0;
+        private double STAC1_700 = 0.0;
+        private double STAC1_1000 = 0.0;
+        private double STAC1_3000 = 0.0;
+        private double STAC1_Pump1 = 0.0;
+        private double STAC1_Pump2 = 0.0;
+        private double STAC1_Pump1_2Temp = 0.0;
+        private double STAC1_VBat = 0.0;
+        private double STAC1_SatTemp = 0.0;
+        private double STAC1_IceJacketTemp = 0.0;
+        private double STAC1_AltStatus = 0.0;
 
-        ** 1st STAC with reduced data
-        OPC_300, 2);                                            //300nm Bin
-        OPC_300 - OPC_500, 1);                                  //500nm difference
-        OPC_500 - OPC_700, 1);                                  //700nm difference
-        OPC_700 - OPC_1000, 1);                                 //1000nm difference
-        OPC_1000 - OPC_3000, 1);                                //3000nm Bin
-        byte(IPump1), 1);                                       //Pump1 current in mA
-        byte(IPump2), 1);                                       //Pump1 current in mA
-        byte((TempPump1 + TempPump2) / 2.0 + 100.0), 1);
-        byte(VBat* 10.0), 1);                                   //Battery voltage *10
-        short(TempCN* 100.0), 2);                               //Saturator T
-        byte(TempIce + 10.0) * 10, 1);                          //Ice Jacket T
-        byte(alt_status), 1);                                   //Status byte for altitude source
+        private double STAC2_300 = 0.0;
+        private double STAC2_500 = 0.0;
+        private double STAC2_700 = 0.0;
+        private double STAC2_1000 = 0.0;
+        private double STAC2_3000 = 0.0;
+        private double STAC2_Pump1 = 0.0;
+        private double STAC2_Pump2 = 0.0;
+        private double STAC2_Pump1_2Temp = 0.0;
+        private double STAC2_VBat = 0.0;
+        private double STAC2_SatTemp = 0.0;
 
-        ** 2nd STAC with reduced data 
-        CNC_300, 2); //300nm Bin
-        (CNC_300 - CNC_500), 1);                                //500nm Difference
-        (CNC_500 - CNC_700), 1);                                //700nm Diffenence
-        (CNC_700 - CNC_1000), 1);                               //1000nm Diffenence
-        (CNC_1000 - CNC_3000), 1);                              //3000nm Diffenence
-        byte(CN_IPump1), 1);                                    //Pump1 current in mA
-        byte(CN_IPump2), 1);                                    //Pump1 current in mA
-        byte((CN_TempPump1 + CN_TempPump2) / 2.0 + 100.0), 1);
-        byte(CN_VBat), 1);                                      //Battery voltage *10
-        short(CN_TempCN* 100.0), 2);                            //Saturator T
-        byte((CN_TempIce + 10.0) * 10), 1);                     //Condenser T 1
-
-        ** Heated Inlet
-        byte(CN_T_UpStream), 1);
-        byte(CN_T_Middle), 1);
-        byte(CN_T_DownStream), 1);
-        byte(CN_HI_V_Battery*10.0), 1);
-        **/
-        private double temperature, pressure;
-        private double OPC_300 = 0.0;
-        private double OPC_300_500 = 0.0;
-        private double OPC_500_700 = 0.0;
-        private double OPC_700_1000 = 0.0;
-        private double OPC_1000_3000 = 0.0;
-        private double OPC_Pump1 = 0.0;
-        private double OPC_Pump2 = 0.0;
-        private double OPC_Pump1_2Temp = 0.0;
-        private double OPC_VBat = 0.0;
-        private double OPC_SatTemp = 0.0;
-        private double OPC_IceJacketTemp = 0.0;
-        private double OPC_AltStatus = 0.0;
-        private double CNC_300 = 0.0;
-        private double CNC_300_500 = 0.0;
-        private double CNC_500_700 = 0.0;
-        private double CNC_700_1000 = 0.0;
-        private double CNC_1000_3000 = 0.0;
-        private double CNC_Pump1 = 0.0;
-        private double CNC_Pump2 = 0.0;
-        private double CNC_Pump1_2Temp = 0.0;
-        private double CNC_VBat = 0.0;
-        private double CNC_SatTemp = 0.0;
-        private double CNC_CondenserTemp = 0.0;
+        private double STAC2_CondenserTemp = 0.0;
         private double HI_UpstreamTemp = 0.0;
         private double HI_MidstreamTemp = 0.0;
         private double HI_DownstreamTemp = 0.0;
@@ -120,7 +91,10 @@ namespace HiStack2Plugin
          */
         override public void ParseConfigPanel()
         {
-            serialNumber = configControl.SerialNumber;
+            Stac1SerialNumber = configControl.Stac1SerialNumber;
+            Stac1FlowRate = configControl.Stac1FlowRate;
+            Stac2SerialNumber = configControl.Stac2SerialNumber;
+            Stac2FlowRate = configControl.Stac2FlowRate;
             daisyChainIndex = configControl.DaisyChainIndex;
         }
 
@@ -150,7 +124,10 @@ namespace HiStack2Plugin
          */
         override public void OutputRawconfigXML(XmlTextWriter xmlWriter)
         {
-            xmlWriter.WriteElementString("HiStack2SerialNumber", serialNumber);
+            xmlWriter.WriteElementString("HiStack2Stac1SerialNumber", Stac1SerialNumber);
+            xmlWriter.WriteElementString("HiStack2Stac1FlowRate", Stac1FlowRate.ToString("F2"));
+            xmlWriter.WriteElementString("HiStack2Stac2SerialNumber", Stac2SerialNumber);
+            xmlWriter.WriteElementString("HiStack2Stac2FlowRate", Stac2FlowRate.ToString("F2"));
             xmlWriter.WriteElementString("HiStack2DaisyChainIndex", daisyChainIndex.ToString());
         }
 
@@ -160,17 +137,46 @@ namespace HiStack2Plugin
          */
         override public void ParseRawconfig(string filename)
         {
+            int nMetaFields = 0;
+
             XDocument doc = XDocument.Load(filename);
 
-            var serialNumberElements = doc.Descendants("HiStack2SerialNumber");
-            if (serialNumberElements.Count() > 0)
+            var elements = doc.Descendants("Stac1SerialNumber");
+            if (elements.Count() > 0)
             {
-                serialNumber = serialNumberElements.First().Value;
+                Stac1SerialNumber = elements.First().Value;
                 //also update the GUI if possible
-                if (configControl != null) configControl.SerialNumber = serialNumber;
+                if (configControl != null) configControl.Stac1SerialNumber = Stac1SerialNumber;
+                nMetaFields++;
+                nMetaFields++;
+            }
 
-                //enable this plugin since there is XML data available
-                this.Enabled = true;
+            elements = doc.Descendants("Stac1FlowRate");
+            if (elements.Count() > 0)
+            {
+                Stac1FlowRate = double.Parse(elements.First().Value);
+                //also update the GUI if possible
+                if (configControl != null) configControl.Stac1FlowRate = Stac1FlowRate;
+                nMetaFields++;
+            }
+
+            elements = doc.Descendants("Stac2SerialNumber");
+            if (elements.Count() > 0)
+            {
+                Stac2SerialNumber = elements.First().Value;
+                //also update the GUI if possible
+                if (configControl != null) configControl.Stac1SerialNumber = Stac2SerialNumber;
+                nMetaFields++;
+
+            }
+
+            elements = doc.Descendants("Stac2FlowRate");
+            if (elements.Count() > 0)
+            {
+                Stac2FlowRate = double.Parse(elements.First().Value);
+                //also update the GUI if possible
+                if (configControl != null) configControl.Stac2FlowRate = Stac1FlowRate;
+                nMetaFields++;
             }
 
             var daisyChainIndexElements = doc.Descendants("HiStack2DaisyChainIndex");
@@ -178,9 +184,16 @@ namespace HiStack2Plugin
             if (daisyChainIndexElements.Count() > 0)
             {
                 daisyChainIndex = int.Parse(daisyChainIndexElements.First().Value);
+                //update the GUI
+                if (configControl != null) configControl.DaisyChainIndex = daisyChainIndex;
+                nMetaFields++;
             }
-            //update the GUI
-            if (configControl != null) configControl.DaisyChainIndex = daisyChainIndex;
+
+            if (nMetaFields == 5)
+            {
+                //enable this plugin since there is XML data available
+                this.Enabled = true;
+            }
         }
 
         /**
@@ -195,7 +208,14 @@ namespace HiStack2Plugin
             //check the XDATA instrument ID to see if this is our instrument's data packet
             byte instrumentID = Byte.Parse(packet.Substring(6, 2), System.Globalization.NumberStyles.HexNumber);
             if (instrumentID != 0x11) return;
-            if (packet.Length != 36) return;
+
+            // The data section of xdata is 31 characters, so
+            // "XDATA="        6
+            // ID              2
+            // DaisyChainIndex 2
+            // Data            31
+            //         total   41
+            if (packet.Length != 41) return;
 
             //parse the packet's daisy chain index, in case of duplicate instruments
             byte packetDaisyChainIndex = Byte.Parse(packet.Substring(8, 2), System.Globalization.NumberStyles.HexNumber);
@@ -205,38 +225,91 @@ namespace HiStack2Plugin
                 if (packetDaisyChainIndex != daisyChainIndex) return;
             }
 
-            //parse the pressure and temperature values from the XDATA instrument packet
-            int pressureInt = PluginHelper.IntFromMSBHexString(packet.Substring(10, 8));
-            Int16 ptempInt = (Int16)PluginHelper.IntFromMSBHexString(packet.Substring(10 + 8, 4));
-            pressure = ((double)pressureInt) / 100;
-            temperature = ((double)ptempInt) / 100;
+            int STAC1_300Int           = PluginHelper.IntFromMSBHexString(packet.Substring(10, 2));
+            int STAC1_300_500Int       = PluginHelper.IntFromMSBHexString(packet.Substring(12, 1));
+            int STAC1_500_700Int       = PluginHelper.IntFromMSBHexString(packet.Substring(13, 1));
+            int STAC1_700_1000Int      = PluginHelper.IntFromMSBHexString(packet.Substring(14, 1));
+            int STAC1_1000_3000Int     = PluginHelper.IntFromMSBHexString(packet.Substring(15, 1));
+            int STAC1_Pump1Int         = PluginHelper.IntFromMSBHexString(packet.Substring(16, 1));
+            int STAC1_Pump2Int         = PluginHelper.IntFromMSBHexString(packet.Substring(17, 1));
+            int STAC1_Pump1_2TempInt   = PluginHelper.IntFromMSBHexString(packet.Substring(18, 1));
+            int STAC1_VBatInt          = PluginHelper.IntFromMSBHexString(packet.Substring(19, 1));
+            int STAC1_SatTempInt       = PluginHelper.IntFromMSBHexString(packet.Substring(20, 2));
+            int STAC1_IceJacketTempInt = PluginHelper.IntFromMSBHexString(packet.Substring(22, 1));
+            int STAC1_AltStatusInt     = PluginHelper.IntFromMSBHexString(packet.Substring(23, 1));
+
+            int STAC2_300Int           = PluginHelper.IntFromMSBHexString(packet.Substring(24, 2));
+            int STAC2_300_500Int       = PluginHelper.IntFromMSBHexString(packet.Substring(26, 1));
+            int STAC2_500_700Int       = PluginHelper.IntFromMSBHexString(packet.Substring(27, 1));
+            int STAC2_700_1000Int      = PluginHelper.IntFromMSBHexString(packet.Substring(28, 1));
+            int STAC2_1000_3000Int     = PluginHelper.IntFromMSBHexString(packet.Substring(29, 1));
+            int STAC2_Pump1Int         = PluginHelper.IntFromMSBHexString(packet.Substring(30, 1));
+            int STAC2_Pump2Int         = PluginHelper.IntFromMSBHexString(packet.Substring(31, 1));
+            int STAC2_Pump1_2TempInt   = PluginHelper.IntFromMSBHexString(packet.Substring(32, 1));
+            int STAC2_VBatInt          = PluginHelper.IntFromMSBHexString(packet.Substring(33, 1));
+            int STAC2_SatTempInt       = PluginHelper.IntFromMSBHexString(packet.Substring(34, 2));
+            int STAC2_CondenserTempInt = PluginHelper.IntFromMSBHexString(packet.Substring(36, 1));
+
+            int HI_UpstreamTempInt   = PluginHelper.IntFromMSBHexString(packet.Substring(37, 1));
+            int HI_MidstreamTempInt  = PluginHelper.IntFromMSBHexString(packet.Substring(38, 1));
+            int HI_DownstreamTempInt = PluginHelper.IntFromMSBHexString(packet.Substring(39, 1));
+            int HI_VBatInt           = PluginHelper.IntFromMSBHexString(packet.Substring(40, 1));
+
+            STAC1_300  =                   STAC1_300Int/(Stac1FlowRate*1000.0/30.0);
+            STAC1_500  = STAC1_300  -  STAC1_300_500Int/(Stac1FlowRate*1000.0/30.0);
+            STAC1_700  = STAC1_500  -  STAC1_500_700Int/(Stac1FlowRate*1000.0/30.0);
+            STAC1_1000 = STAC1_700  -  STAC1_700_1000Int/(Stac1FlowRate*1000.0/30.0);
+            STAC1_3000 = STAC1_1000 - STAC1_1000_3000Int/(Stac1FlowRate * 1000.0 / 30.0);
+            STAC1_Pump1 = STAC1_Pump1Int;
+            STAC1_Pump2 = STAC1_Pump2Int;
+            STAC1_Pump1_2Temp = (STAC1_Pump1_2TempInt - 100.0)/2.0;
+            STAC1_VBat = STAC1_VBatInt/10.0;
+            STAC1_SatTemp = STAC1_SatTempInt/100.0;
+            STAC1_IceJacketTemp = STAC1_IceJacketTempInt/10.0 - 10.0;
+            STAC1_AltStatus = STAC1_AltStatusInt;
+
+            STAC2_300  =                   STAC2_300Int/(Stac2FlowRate*1000.0/30.0);
+            STAC2_500  = STAC2_300  -  STAC2_300_500Int/(Stac2FlowRate*1000.0/30.0);
+            STAC2_700  = STAC2_500  -  STAC2_500_700Int/(Stac2FlowRate*1000.0/30.0);
+            STAC2_1000 = STAC2_700  -  STAC2_700_1000Int/(Stac2FlowRate*1000.0/30.0);
+            STAC2_3000 = STAC2_1000 - STAC2_1000_3000Int/(Stac2FlowRate*1000.0/30.0);
+            STAC2_Pump1 = STAC2_Pump1Int;
+            STAC2_Pump2 = STAC2_Pump2Int;
+            STAC2_Pump1_2Temp = (STAC2_Pump1_2TempInt-100.0)*2;
+            STAC2_VBat = STAC2_VBatInt/10.0;
+            STAC2_SatTemp = STAC2_SatTempInt/100.0;
+            STAC2_CondenserTemp = (STAC2_CondenserTempInt/10.0) - 10.0;
+            HI_UpstreamTemp = HI_UpstreamTempInt;
+            HI_MidstreamTemp = HI_MidstreamTempInt;
+            HI_DownstreamTemp = HI_DownstreamTempInt;
+            HI_VBat = HI_VBatInt/10.0;
 
 
             //update the GUI using the data view control
             dataViewControl.UpdateData(
-                OPC_300,
-                OPC_300_500,
-                OPC_500_700,
-                OPC_700_1000,
-                OPC_1000_3000,
-                OPC_Pump1,
-                OPC_Pump2,
-                OPC_Pump1_2Temp,
-                OPC_VBat,
-                OPC_SatTemp,
-                OPC_IceJacketTemp,
-                OPC_AltStatus,
-                CNC_300,
-                CNC_300_500,
-                CNC_500_700,
-                CNC_700_1000,
-                CNC_1000_3000,
-                CNC_Pump1,
-                CNC_Pump2,
-                CNC_Pump1_2Temp,
-                CNC_VBat,
-                CNC_SatTemp,
-                CNC_CondenserTemp,
+                STAC1_300,
+                STAC1_500,
+                STAC1_700,
+                STAC1_1000,
+                STAC1_3000,
+                STAC1_Pump1,
+                STAC1_Pump2,
+                STAC1_Pump1_2Temp,
+                STAC1_VBat,
+                STAC1_SatTemp,
+                STAC1_IceJacketTemp,
+                STAC1_AltStatus,
+                STAC2_300,
+                STAC2_500,
+                STAC2_700,
+                STAC2_1000,
+                STAC2_3000,
+                STAC2_Pump1,
+                STAC2_Pump2,
+                STAC2_Pump1_2Temp,
+                STAC2_VBat,
+                STAC2_SatTemp,
+                STAC2_CondenserTemp,
                 HI_UpstreamTemp,
                 HI_MidstreamTemp,
                 HI_DownstreamTemp,
@@ -250,16 +323,21 @@ namespace HiStack2Plugin
      */
     override public string OutputCSVMetadataLines()
         {
-            return string.Format("HiStack2 Serial Number:, {0}", serialNumber);
+            return
+                string.Format("HiStack2 STAC1 Serial Number:, {0}\n", Stac1SerialNumber) +
+                string.Format("HiStack2 STAC1 Flow Rate:, {0:0.00}\n", Stac1FlowRate) +
+                string.Format("HiStack2 STAC2 Serial Number:, {0}\n", Stac2SerialNumber) +
+                string.Format("HiStack2 STAC2 Flow Rate:, {0:0.00}\n", Stac2FlowRate);
         }
 
         /**
-         * Output CSV header field names for the plugin's output fields.  Please include units in square brackets at the end of the name.  Always start with a leading comma, and finish without a comma.  Example:
+         * Output CSV header field names for the plugin's output fields.  Please include units in square brackets at the end of the name.  
+         * Always start with a leading comma, and finish without a comma.  Example:
          * , fieldname1 [units1], fieldname2 [units2]
          */
         override public string OutputCSVHeaderSegment()
         {
-            return ", HiStack2 Temperature [deg C], HiStack2 Pressure [mb]";
+            return ", STAC1_300 [nm], STAC1_500 [nm], STAC1_700 [nm], STAC1_1000 [nm], STAC1_3000 [nm], ";
         }
 
         /**
@@ -269,7 +347,7 @@ namespace HiStack2Plugin
          */
         override public string OutputCSVRowSegment(DateTime dateTimeUTC, RadiosondeFields radiosondeFields)
         {
-            return string.Format(", {0:0.00}, {1:0.00}", temperature, pressure);
+            return string.Format(", {0:0.00}, {1:0.00}", STAC1_3000, STAC1_300);
         }
     }
 }
