@@ -325,9 +325,9 @@ namespace HiStack2Plugin
         {
             return
                 string.Format("HiStack2 STAC1 Serial Number:, {0}\n", Stac1SerialNumber) +
-                string.Format("HiStack2 STAC1 Flow Rate:, {0:0.00}\n", Stac1FlowRate) +
+                string.Format("HiStack2 STAC1 Flow Rate:, {0:0.00} [LPM]\n", Stac1FlowRate) +
                 string.Format("HiStack2 STAC2 Serial Number:, {0}\n", Stac2SerialNumber) +
-                string.Format("HiStack2 STAC2 Flow Rate:, {0:0.00}\n", Stac2FlowRate);
+                string.Format("HiStack2 STAC2 Flow Rate:, {0:0.00} [LPM]", Stac2FlowRate);
         }
 
         /**
@@ -337,7 +337,7 @@ namespace HiStack2Plugin
          */
         override public string OutputCSVHeaderSegment()
         {
-            return ", STAC1_300 [nm], STAC1_500 [nm], STAC1_700 [nm], STAC1_1000 [nm], STAC1_3000 [nm], ";
+            return ", STAC1_300 [#/cc], STAC1_500 [#/cc], STAC1_700 [#/cc], STAC1_1000 [#/cc], STAC1_3000 [#/cc], STAC1_Pump1 [mA], STAC1_Pump2 [mA], STAC1_Pump1_2T [deg C], STAC1_VBat [V], STAC1_SatT [deg C], STAC1_IceJacketT [deg C], STAC1_AltStatus [n], STAC2_300 [#/cc], STAC2_500 [#/cc], STAC2_700 [#/cc], STAC2_1000 [#/cc], STAC2_3000 [#/cc], STAC2_Pump1 [mA], STAC2_Pump2 [mA], STAC2_Pump1_2T [deg C], STAC2_VBat [V], STAC2_SatT [deg C], STAC2_CondenserT [deg C], HI_UpstreamT [deg C], HI_MidstreamT [deg C], HI_DownstreamT [deg C], HI_VBat [V]";
         }
 
         /**
@@ -347,7 +347,34 @@ namespace HiStack2Plugin
          */
         override public string OutputCSVRowSegment(DateTime dateTimeUTC, RadiosondeFields radiosondeFields)
         {
-            return string.Format(", {0:0.00}, {1:0.00}", STAC1_3000, STAC1_300);
+            return
+                string.Format(", {0:0.00}, ", STAC1_300) +
+                string.Format(", {0:0.00}, ", STAC1_500) +
+                string.Format(", {0:0.00}, ", STAC1_700) +
+                string.Format(", {0:0.00}, ", STAC1_1000) +
+                string.Format(", {0:0.00}, ", STAC1_3000) +
+                string.Format(", {0:0.00}, ", STAC1_Pump1) +
+                string.Format(", {0:0.00}, ", STAC1_Pump2) +
+                string.Format(", {0:0.00}, ", STAC1_Pump1_2Temp) +
+                string.Format(", {0:0.00}, ", STAC1_VBat) +
+                string.Format(", {0:0.00}, ", STAC1_SatTemp) +
+                string.Format(", {0:0.00}, ", STAC1_IceJacketTemp) +
+                string.Format(", {0:0.00}, ", STAC1_AltStatus) +
+                string.Format(", {0:0.00}, ", STAC2_300) +
+                string.Format(", {0:0.00}, ", STAC2_500) +
+                string.Format(", {0:0.00}, ", STAC2_700) +
+                string.Format(", {0:0.00}, ", STAC2_1000) +
+                string.Format(", {0:0.00}, ", STAC2_3000) +
+                string.Format(", {0:0.00}, ", STAC2_Pump1) +
+                string.Format(", {0:0.00}, ", STAC2_Pump2) +
+                string.Format(", {0:0.00}, ", STAC2_Pump1_2Temp) +
+                string.Format(", {0:0.00}, ", STAC2_VBat) +
+                string.Format(", {0:0.00}, ", STAC2_SatTemp) +
+                string.Format(", {0:0.00}, ", STAC2_CondenserTemp) +
+                string.Format(", {0:0.00}, ", HI_UpstreamTemp) +
+                string.Format(", {0:0.00}, ", HI_MidstreamTemp) +
+                string.Format(", {0:0.00}, ", HI_DownstreamTemp) +
+                string.Format(", {0:0.00}"  , HI_VBat);
         }
     }
 }
