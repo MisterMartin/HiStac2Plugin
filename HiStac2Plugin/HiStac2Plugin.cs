@@ -207,7 +207,7 @@ namespace HiStack2Plugin
         {
             //check the XDATA instrument ID to see if this is our instrument's data packet
             byte instrumentID = Byte.Parse(packet.Substring(6, 2), System.Globalization.NumberStyles.HexNumber);
-            if (instrumentID != 0x11) return;
+            if (instrumentID != 0x41) return;
 
             // The data section of xdata is 31 characters, so
             // "XDATA="        6
