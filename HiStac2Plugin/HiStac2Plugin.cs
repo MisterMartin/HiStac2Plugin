@@ -36,7 +36,7 @@ namespace HiStack2Plugin
         private double STAC1_VBat = 0.0;
         private double STAC1_SatTemp = 0.0;
         private double STAC1_IceJacketTemp = 0.0;
-        private double STAC1_AltStatus = 0.0;
+        private int    STAC1_AltStatus = 0;
 
         private double STAC2_300 = 0.0;
         private double STAC2_500 = 0.0;
@@ -124,11 +124,11 @@ namespace HiStack2Plugin
          */
         override public void OutputRawconfigXML(XmlTextWriter xmlWriter)
         {
-            xmlWriter.WriteElementString("HiStack2Stac1SerialNumber", Stac1SerialNumber);
-            xmlWriter.WriteElementString("HiStack2Stac1FlowRate", Stac1FlowRate.ToString("F2"));
-            xmlWriter.WriteElementString("HiStack2Stac2SerialNumber", Stac2SerialNumber);
-            xmlWriter.WriteElementString("HiStack2Stac2FlowRate", Stac2FlowRate.ToString("F2"));
-            xmlWriter.WriteElementString("HiStack2DaisyChainIndex", daisyChainIndex.ToString());
+            xmlWriter.WriteElementString("stac1SerialNumber", Stac1SerialNumber);
+            xmlWriter.WriteElementString("stac1FlowRate", Stac1FlowRate.ToString("F2"));
+            xmlWriter.WriteElementString("stac2SerialNumber", Stac2SerialNumber);
+            xmlWriter.WriteElementString("stac2FlowRate", Stac2FlowRate.ToString("F2"));
+            xmlWriter.WriteElementString("daisyChainIndex", daisyChainIndex.ToString());
         }
 
         /**
@@ -141,17 +141,16 @@ namespace HiStack2Plugin
 
             XDocument doc = XDocument.Load(filename);
 
-            var elements = doc.Descendants("Stac1SerialNumber");
+            var elements = doc.Descendants("stac1SerialNumber");
             if (elements.Count() > 0)
             {
                 Stac1SerialNumber = elements.First().Value;
                 //also update the GUI if possible
                 if (configControl != null) configControl.Stac1SerialNumber = Stac1SerialNumber;
                 nMetaFields++;
-                nMetaFields++;
             }
 
-            elements = doc.Descendants("Stac1FlowRate");
+            elements = doc.Descendants("stac1FlowRate");
             if (elements.Count() > 0)
             {
                 Stac1FlowRate = double.Parse(elements.First().Value);
@@ -160,26 +159,26 @@ namespace HiStack2Plugin
                 nMetaFields++;
             }
 
-            elements = doc.Descendants("Stac2SerialNumber");
+            elements = doc.Descendants("stac2SerialNumber");
             if (elements.Count() > 0)
             {
                 Stac2SerialNumber = elements.First().Value;
                 //also update the GUI if possible
-                if (configControl != null) configControl.Stac1SerialNumber = Stac2SerialNumber;
+                if (configControl != null) configControl.Stac2SerialNumber = Stac2SerialNumber;
                 nMetaFields++;
 
             }
 
-            elements = doc.Descendants("Stac2FlowRate");
+            elements = doc.Descendants("stac2FlowRate");
             if (elements.Count() > 0)
             {
                 Stac2FlowRate = double.Parse(elements.First().Value);
                 //also update the GUI if possible
-                if (configControl != null) configControl.Stac2FlowRate = Stac1FlowRate;
+                if (configControl != null) configControl.Stac2FlowRate = Stac2FlowRate;
                 nMetaFields++;
             }
 
-            var daisyChainIndexElements = doc.Descendants("HiStack2DaisyChainIndex");
+            var daisyChainIndexElements = doc.Descendants("daisyChainIndex");
             daisyChainIndex = 0;
             if (daisyChainIndexElements.Count() > 0)
             {
@@ -205,18 +204,12 @@ namespace HiStack2Plugin
          */
         override public void ParsePacket(string packet, DateTime dateTimeUTC)
         {
-            Console.WriteLine("parsepacket");
             //check the XDATA instrument ID to see if this is our instrument's data packet
             byte instrumentID = Byte.Parse(packet.Substring(6, 2), System.Globalization.NumberStyles.HexNumber);
             if (instrumentID != 0x41) return;
 
-            // The data section of xdata is 31 characters, so
-            // "XDATA="        6
-            // ID              2
-            // DaisyChainIndex 2
-            // Data            31
-            //         total   41
-            //if (packet.Length != 41) return;
+            // There is are 2 extra bytes at the end of the packet. 
+            if (packet.Length != 76) return;
 
             //parse the packet's daisy chain index, in case of duplicate instruments
             byte packetDaisyChainIndex = Byte.Parse(packet.Substring(8, 2), System.Globalization.NumberStyles.HexNumber);
@@ -226,45 +219,44 @@ namespace HiStack2Plugin
                 if (packetDaisyChainIndex != daisyChainIndex) return;
             }
 
-            int STAC1_300Int           = PluginHelper.IntFromMSBHexString(packet.Substring(12, 2));
-            int STAC1_300_500Int       = PluginHelper.IntFromMSBHexString(packet.Substring(14, 1));
-            int STAC1_500_700Int       = PluginHelper.IntFromMSBHexString(packet.Substring(15, 1));
-            int STAC1_700_1000Int      = PluginHelper.IntFromMSBHexString(packet.Substring(16, 1));
-            int STAC1_1000_3000Int     = PluginHelper.IntFromMSBHexString(packet.Substring(17, 1));
-            int STAC1_Pump1Int         = PluginHelper.IntFromMSBHexString(packet.Substring(18, 1));
-            int STAC1_Pump2Int         = PluginHelper.IntFromMSBHexString(packet.Substring(19, 1));
-            int STAC1_Pump1_2TempInt   = PluginHelper.IntFromMSBHexString(packet.Substring(20, 1));
-            int STAC1_VBatInt          = PluginHelper.IntFromMSBHexString(packet.Substring(21, 1));
-            int STAC1_SatTempInt       = PluginHelper.IntFromMSBHexString(packet.Substring(22, 2));
-            int STAC1_IceJacketTempInt = PluginHelper.IntFromMSBHexString(packet.Substring(24, 1));
-            int STAC1_AltStatusInt     = PluginHelper.IntFromMSBHexString(packet.Substring(25, 1));
+            int STAC1_300Int           = PluginHelper.IntFromMSBHexString(packet.Substring(10, 4));
+            int STAC1_300_500Int       = PluginHelper.IntFromMSBHexString(packet.Substring(14, 2));
+            int STAC1_500_700Int       = PluginHelper.IntFromMSBHexString(packet.Substring(16, 2));
+            int STAC1_700_1000Int      = PluginHelper.IntFromMSBHexString(packet.Substring(18, 2));
+            int STAC1_1000_3000Int     = PluginHelper.IntFromMSBHexString(packet.Substring(20, 2));
+            int STAC1_Pump1Int         = PluginHelper.IntFromMSBHexString(packet.Substring(22, 2));
+            int STAC1_Pump2Int         = PluginHelper.IntFromMSBHexString(packet.Substring(24, 2));
+            int STAC1_Pump1_2TempInt   = PluginHelper.IntFromMSBHexString(packet.Substring(26, 2));
+            int STAC1_VBatInt          = PluginHelper.IntFromMSBHexString(packet.Substring(28, 2));
+            int STAC1_SatTempInt       = PluginHelper.IntFromMSBHexString(packet.Substring(30, 4));
+            int STAC1_IceJacketTempInt = PluginHelper.IntFromMSBHexString(packet.Substring(34, 2));
+            int STAC1_AltStatusInt     = PluginHelper.IntFromMSBHexString(packet.Substring(36, 2));
 
-            int STAC2_300Int           = PluginHelper.IntFromMSBHexString(packet.Substring(26, 2));
-            int STAC2_300_500Int       = PluginHelper.IntFromMSBHexString(packet.Substring(28, 1));
-            int STAC2_500_700Int       = PluginHelper.IntFromMSBHexString(packet.Substring(29, 1));
-            int STAC2_700_1000Int      = PluginHelper.IntFromMSBHexString(packet.Substring(30, 1));
-            int STAC2_1000_3000Int     = PluginHelper.IntFromMSBHexString(packet.Substring(31, 1));
-            int STAC2_Pump1Int         = PluginHelper.IntFromMSBHexString(packet.Substring(32, 1));
-            int STAC2_Pump2Int         = PluginHelper.IntFromMSBHexString(packet.Substring(33, 1));
-            int STAC2_Pump1_2TempInt   = PluginHelper.IntFromMSBHexString(packet.Substring(34, 1));
-            int STAC2_VBatInt          = PluginHelper.IntFromMSBHexString(packet.Substring(35, 1));
-            int STAC2_SatTempInt       = PluginHelper.IntFromMSBHexString(packet.Substring(36, 2));
-            int STAC2_CondenserTempInt = PluginHelper.IntFromMSBHexString(packet.Substring(37, 1));
+            int STAC2_300Int           = PluginHelper.IntFromMSBHexString(packet.Substring(38, 4));
+            int STAC2_300_500Int       = PluginHelper.IntFromMSBHexString(packet.Substring(42, 2));
+            int STAC2_500_700Int       = PluginHelper.IntFromMSBHexString(packet.Substring(44, 2));
+            int STAC2_700_1000Int      = PluginHelper.IntFromMSBHexString(packet.Substring(46, 2));
+            int STAC2_1000_3000Int     = PluginHelper.IntFromMSBHexString(packet.Substring(48, 2));
+            int STAC2_Pump1Int         = PluginHelper.IntFromMSBHexString(packet.Substring(50, 2));
+            int STAC2_Pump2Int         = PluginHelper.IntFromMSBHexString(packet.Substring(52, 2));
+            int STAC2_Pump1_2TempInt   = PluginHelper.IntFromMSBHexString(packet.Substring(54, 2));
+            int STAC2_VBatInt          = PluginHelper.IntFromMSBHexString(packet.Substring(56, 2));
+            int STAC2_SatTempInt       = PluginHelper.IntFromMSBHexString(packet.Substring(58, 4));
+            int STAC2_CondenserTempInt = PluginHelper.IntFromMSBHexString(packet.Substring(62, 2));
 
-            int HI_UpstreamTempInt   = PluginHelper.IntFromMSBHexString(packet.Substring(38, 1));
-            int HI_MidstreamTempInt  = PluginHelper.IntFromMSBHexString(packet.Substring(39, 1));
-            int HI_DownstreamTempInt = PluginHelper.IntFromMSBHexString(packet.Substring(40, 1));
-            int HI_VBatInt           = PluginHelper.IntFromMSBHexString(packet.Substring(41, 1));
+            int HI_UpstreamTempInt   = PluginHelper.IntFromMSBHexString(packet.Substring(64, 2));
+            int HI_MidstreamTempInt  = PluginHelper.IntFromMSBHexString(packet.Substring(66, 2));
+            int HI_DownstreamTempInt = PluginHelper.IntFromMSBHexString(packet.Substring(68, 2));
+            int HI_VBatInt           = PluginHelper.IntFromMSBHexString(packet.Substring(70, 2));
 
             STAC1_300 = STAC1_300Int / (Stac1FlowRate * 1000.0 / 30.0);
-            STAC1_300 = STAC1_300Int;
             STAC1_500 = STAC1_300  -  STAC1_300_500Int/(Stac1FlowRate*1000.0/30.0);
             STAC1_700  = STAC1_500  -  STAC1_500_700Int/(Stac1FlowRate*1000.0/30.0);
             STAC1_1000 = STAC1_700  -  STAC1_700_1000Int/(Stac1FlowRate*1000.0/30.0);
             STAC1_3000 = STAC1_1000 - STAC1_1000_3000Int/(Stac1FlowRate * 1000.0 / 30.0);
             STAC1_Pump1 = STAC1_Pump1Int;
             STAC1_Pump2 = STAC1_Pump2Int;
-            STAC1_Pump1_2Temp = (STAC1_Pump1_2TempInt - 100.0)/2.0;
+            STAC1_Pump1_2Temp = STAC1_Pump1_2TempInt - 100.0;
             STAC1_VBat = STAC1_VBatInt/10.0;
             STAC1_SatTemp = STAC1_SatTempInt/100.0;
             STAC1_IceJacketTemp = STAC1_IceJacketTempInt/10.0 - 10.0;
@@ -277,7 +269,7 @@ namespace HiStack2Plugin
             STAC2_3000 = STAC2_1000 - STAC2_1000_3000Int/(Stac2FlowRate*1000.0/30.0);
             STAC2_Pump1 = STAC2_Pump1Int;
             STAC2_Pump2 = STAC2_Pump2Int;
-            STAC2_Pump1_2Temp = (STAC2_Pump1_2TempInt-100.0)*2;
+            STAC2_Pump1_2Temp = STAC2_Pump1_2TempInt - 100.0;
             STAC2_VBat = STAC2_VBatInt/10.0;
             STAC2_SatTemp = STAC2_SatTempInt/100.0;
             STAC2_CondenserTemp = (STAC2_CondenserTempInt/10.0) - 10.0;
@@ -326,10 +318,10 @@ namespace HiStack2Plugin
     override public string OutputCSVMetadataLines()
         {
             return
-                string.Format("HiStack2 STAC1 Serial Number:, {0}\n", Stac1SerialNumber) +
-                string.Format("HiStack2 STAC1 Flow Rate:, {0:0.00} [LPM]\n", Stac1FlowRate) +
-                string.Format("HiStack2 STAC2 Serial Number:, {0}\n", Stac2SerialNumber) +
-                string.Format("HiStack2 STAC2 Flow Rate:, {0:0.00} [LPM]", Stac2FlowRate);
+                string.Format("STAC1 Serial Number:, {0}\n", Stac1SerialNumber) +
+                string.Format("STAC1 Flow Rate:, {0:0.00} [LPM]\n", Stac1FlowRate) +
+                string.Format("STAC2 Serial Number:, {0}\n", Stac2SerialNumber) +
+                string.Format("STAC2 Flow Rate:, {0:0.00} [LPM]", Stac2FlowRate);
         }
 
         /**
@@ -350,33 +342,33 @@ namespace HiStack2Plugin
         override public string OutputCSVRowSegment(DateTime dateTimeUTC, RadiosondeFields radiosondeFields)
         {
             return
-                string.Format(", {0:0.00}, ", STAC1_300) +
-                string.Format(", {0:0.00}, ", STAC1_500) +
-                string.Format(", {0:0.00}, ", STAC1_700) +
-                string.Format(", {0:0.00}, ", STAC1_1000) +
-                string.Format(", {0:0.00}, ", STAC1_3000) +
-                string.Format(", {0:0.00}, ", STAC1_Pump1) +
-                string.Format(", {0:0.00}, ", STAC1_Pump2) +
-                string.Format(", {0:0.00}, ", STAC1_Pump1_2Temp) +
-                string.Format(", {0:0.00}, ", STAC1_VBat) +
-                string.Format(", {0:0.00}, ", STAC1_SatTemp) +
-                string.Format(", {0:0.00}, ", STAC1_IceJacketTemp) +
-                string.Format(", {0:0.00}, ", STAC1_AltStatus) +
-                string.Format(", {0:0.00}, ", STAC2_300) +
-                string.Format(", {0:0.00}, ", STAC2_500) +
-                string.Format(", {0:0.00}, ", STAC2_700) +
-                string.Format(", {0:0.00}, ", STAC2_1000) +
-                string.Format(", {0:0.00}, ", STAC2_3000) +
-                string.Format(", {0:0.00}, ", STAC2_Pump1) +
-                string.Format(", {0:0.00}, ", STAC2_Pump2) +
-                string.Format(", {0:0.00}, ", STAC2_Pump1_2Temp) +
-                string.Format(", {0:0.00}, ", STAC2_VBat) +
-                string.Format(", {0:0.00}, ", STAC2_SatTemp) +
-                string.Format(", {0:0.00}, ", STAC2_CondenserTemp) +
-                string.Format(", {0:0.00}, ", HI_UpstreamTemp) +
-                string.Format(", {0:0.00}, ", HI_MidstreamTemp) +
-                string.Format(", {0:0.00}, ", HI_DownstreamTemp) +
-                string.Format(", {0:0.00}"  , HI_VBat);
+                string.Format(", {0:0.00}", STAC1_300) +
+                string.Format(", {0:0.00}", STAC1_500) +
+                string.Format(", {0:0.00}", STAC1_700) +
+                string.Format(", {0:0.00}", STAC1_1000) +
+                string.Format(", {0:0.00}", STAC1_3000) +
+                string.Format(", {0:0.00}", STAC1_Pump1) +
+                string.Format(", {0:0.00}", STAC1_Pump2) +
+                string.Format(", {0:0.00}", STAC1_Pump1_2Temp) +
+                string.Format(", {0:0.00}", STAC1_VBat) +
+                string.Format(", {0:0.00}", STAC1_SatTemp) +
+                string.Format(", {0:0.00}", STAC1_IceJacketTemp) +
+                string.Format(", {0:0.00}", STAC1_AltStatus) +
+                string.Format(", {0:0.00}", STAC2_300) +
+                string.Format(", {0:0.00}", STAC2_500) +
+                string.Format(", {0:0.00}", STAC2_700) +
+                string.Format(", {0:0.00}", STAC2_1000) +
+                string.Format(", {0:0.00}", STAC2_3000) +
+                string.Format(", {0:0.00}", STAC2_Pump1) +
+                string.Format(", {0:0.00}", STAC2_Pump2) +
+                string.Format(", {0:0.00}", STAC2_Pump1_2Temp) +
+                string.Format(", {0:0.00}", STAC2_VBat) +
+                string.Format(", {0:0.00}", STAC2_SatTemp) +
+                string.Format(", {0:0.00}", STAC2_CondenserTemp) +
+                string.Format(", {0:0.00}", HI_UpstreamTemp) +
+                string.Format(", {0:0.00}", HI_MidstreamTemp) +
+                string.Format(", {0:0.00}", HI_DownstreamTemp) +
+                string.Format(", {0:0.00}", HI_VBat);
         }
     }
 }

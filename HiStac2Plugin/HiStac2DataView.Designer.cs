@@ -94,6 +94,7 @@
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.AutoSize = true;
             this.groupBox1.Controls.Add(this.STAC1_VBatLabel);
             this.groupBox1.Controls.Add(this.label30);
             this.groupBox1.Controls.Add(this.label29);
@@ -155,10 +156,10 @@
             this.groupBox1.Margin = new System.Windows.Forms.Padding(6);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(6);
-            this.groupBox1.Size = new System.Drawing.Size(590, 1465);
+            this.groupBox1.Size = new System.Drawing.Size(580, 1465);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "HiStack2 Data";
+            this.groupBox1.Text = "HiStack2";
             // 
             // STAC1_VBatLabel
             // 
@@ -288,54 +289,54 @@
             this.HI_DownstreamTempLabel.AutoSize = true;
             this.HI_DownstreamTempLabel.Location = new System.Drawing.Point(335, 1073);
             this.HI_DownstreamTempLabel.Name = "HI_DownstreamTempLabel";
-            this.HI_DownstreamTempLabel.Size = new System.Drawing.Size(111, 25);
+            this.HI_DownstreamTempLabel.Size = new System.Drawing.Size(75, 25);
             this.HI_DownstreamTempLabel.TabIndex = 47;
-            this.HI_DownstreamTempLabel.Text = "n/a [degC]";
+            this.HI_DownstreamTempLabel.Text = "n/a [C]";
             // 
             // HI_MidstreamTempLabel
             // 
             this.HI_MidstreamTempLabel.AutoSize = true;
             this.HI_MidstreamTempLabel.Location = new System.Drawing.Point(335, 1035);
             this.HI_MidstreamTempLabel.Name = "HI_MidstreamTempLabel";
-            this.HI_MidstreamTempLabel.Size = new System.Drawing.Size(111, 25);
+            this.HI_MidstreamTempLabel.Size = new System.Drawing.Size(75, 25);
             this.HI_MidstreamTempLabel.TabIndex = 46;
-            this.HI_MidstreamTempLabel.Text = "n/a [degC]";
+            this.HI_MidstreamTempLabel.Text = "n/a [C]";
             // 
             // HI_UpstreamTempLabel
             // 
             this.HI_UpstreamTempLabel.AutoSize = true;
             this.HI_UpstreamTempLabel.Location = new System.Drawing.Point(335, 997);
             this.HI_UpstreamTempLabel.Name = "HI_UpstreamTempLabel";
-            this.HI_UpstreamTempLabel.Size = new System.Drawing.Size(111, 25);
+            this.HI_UpstreamTempLabel.Size = new System.Drawing.Size(75, 25);
             this.HI_UpstreamTempLabel.TabIndex = 45;
-            this.HI_UpstreamTempLabel.Text = "n/a [degC]";
+            this.HI_UpstreamTempLabel.Text = "n/a [C]";
             // 
             // STAC2_CondenserTempLabel
             // 
             this.STAC2_CondenserTempLabel.AutoSize = true;
             this.STAC2_CondenserTempLabel.Location = new System.Drawing.Point(335, 933);
             this.STAC2_CondenserTempLabel.Name = "STAC2_CondenserTempLabel";
-            this.STAC2_CondenserTempLabel.Size = new System.Drawing.Size(111, 25);
+            this.STAC2_CondenserTempLabel.Size = new System.Drawing.Size(75, 25);
             this.STAC2_CondenserTempLabel.TabIndex = 44;
-            this.STAC2_CondenserTempLabel.Text = "n/a [degC]";
+            this.STAC2_CondenserTempLabel.Text = "n/a [C]";
             // 
             // STAC2_SaturatorTempLabel
             // 
             this.STAC2_SaturatorTempLabel.AutoSize = true;
             this.STAC2_SaturatorTempLabel.Location = new System.Drawing.Point(335, 895);
             this.STAC2_SaturatorTempLabel.Name = "STAC2_SaturatorTempLabel";
-            this.STAC2_SaturatorTempLabel.Size = new System.Drawing.Size(111, 25);
+            this.STAC2_SaturatorTempLabel.Size = new System.Drawing.Size(75, 25);
             this.STAC2_SaturatorTempLabel.TabIndex = 43;
-            this.STAC2_SaturatorTempLabel.Text = "n/a [degC]";
+            this.STAC2_SaturatorTempLabel.Text = "n/a [C]";
             // 
             // STAC2_Pump1_2TempLabel
             // 
             this.STAC2_Pump1_2TempLabel.AutoSize = true;
             this.STAC2_Pump1_2TempLabel.Location = new System.Drawing.Point(335, 819);
             this.STAC2_Pump1_2TempLabel.Name = "STAC2_Pump1_2TempLabel";
-            this.STAC2_Pump1_2TempLabel.Size = new System.Drawing.Size(111, 25);
+            this.STAC2_Pump1_2TempLabel.Size = new System.Drawing.Size(75, 25);
             this.STAC2_Pump1_2TempLabel.TabIndex = 42;
-            this.STAC2_Pump1_2TempLabel.Text = "n/a [degC]";
+            this.STAC2_Pump1_2TempLabel.Text = "n/a [C]";
             // 
             // STAC1_IceJacketTempLabel
             // 
@@ -690,10 +691,11 @@
             this.Controls.Add(this.groupBox1);
             this.Margin = new System.Windows.Forms.Padding(6);
             this.Name = "HiStac2DataView";
-            this.Size = new System.Drawing.Size(480, 1148);
+            this.Size = new System.Drawing.Size(540, 1148);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 

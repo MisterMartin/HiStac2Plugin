@@ -29,7 +29,7 @@ namespace HiStack2Plugin
                     double STAC1_VBat,
                     double STAC1_SatTemp,
                     double STAC1_IceJacketTemp,
-                    double STAC1_AltStatus,
+                    int    STAC1_AltStatus,
                     double STAC2_300,
                     double STAC2_300_500,
                     double STAC2_500_700,
@@ -59,7 +59,7 @@ namespace HiStack2Plugin
                     double STAC1_VBat,
                     double STAC1_SatTemp,
                     double STAC1_IceJacketTemp,
-                    double STAC1_AltStatus,
+                    int    STAC1_AltStatus,
                     double STAC2_300,
                     double STAC2_300_500,
                     double STAC2_500_700,
@@ -121,7 +121,7 @@ namespace HiStack2Plugin
                 STAC1_VBatLabel.Text          = string.Format("{0:0.00} V]",      STAC1_VBat);
                 STAC1_SaturatorTempLabel.Text = string.Format("{0:0.0} [deg C]",  STAC1_SatTemp);
                 STAC1_IceJacketTempLabel.Text = string.Format("{0:0.0} [deg C]",  STAC1_IceJacketTemp);
-                STAC1_AltSourceLabel.Text     = string.Format("{0:0.00} [0,1,2]", STAC1_AltStatus);
+                STAC1_AltSourceLabel.Text     = string.Format("{0:0} [0,1,2]",    STAC1_AltStatus);
 
                 STAC2_300Label.Text           = string.Format("{0:0.000} [#/cc]", STAC2_300);
                 STAC2_500Label.Text           = string.Format("{0:0.000} [#/cc]", STAC2_300_500);
