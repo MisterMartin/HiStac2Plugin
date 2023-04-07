@@ -205,6 +205,7 @@ namespace HiStack2Plugin
          */
         override public void ParsePacket(string packet, DateTime dateTimeUTC)
         {
+            Console.WriteLine("parsepacket");
             //check the XDATA instrument ID to see if this is our instrument's data packet
             byte instrumentID = Byte.Parse(packet.Substring(6, 2), System.Globalization.NumberStyles.HexNumber);
             if (instrumentID != 0x41) return;
@@ -215,7 +216,7 @@ namespace HiStack2Plugin
             // DaisyChainIndex 2
             // Data            31
             //         total   41
-            if (packet.Length != 41) return;
+            //if (packet.Length != 41) return;
 
             //parse the packet's daisy chain index, in case of duplicate instruments
             byte packetDaisyChainIndex = Byte.Parse(packet.Substring(8, 2), System.Globalization.NumberStyles.HexNumber);
@@ -225,38 +226,39 @@ namespace HiStack2Plugin
                 if (packetDaisyChainIndex != daisyChainIndex) return;
             }
 
-            int STAC1_300Int           = PluginHelper.IntFromMSBHexString(packet.Substring(10, 2));
-            int STAC1_300_500Int       = PluginHelper.IntFromMSBHexString(packet.Substring(12, 1));
-            int STAC1_500_700Int       = PluginHelper.IntFromMSBHexString(packet.Substring(13, 1));
-            int STAC1_700_1000Int      = PluginHelper.IntFromMSBHexString(packet.Substring(14, 1));
-            int STAC1_1000_3000Int     = PluginHelper.IntFromMSBHexString(packet.Substring(15, 1));
-            int STAC1_Pump1Int         = PluginHelper.IntFromMSBHexString(packet.Substring(16, 1));
-            int STAC1_Pump2Int         = PluginHelper.IntFromMSBHexString(packet.Substring(17, 1));
-            int STAC1_Pump1_2TempInt   = PluginHelper.IntFromMSBHexString(packet.Substring(18, 1));
-            int STAC1_VBatInt          = PluginHelper.IntFromMSBHexString(packet.Substring(19, 1));
-            int STAC1_SatTempInt       = PluginHelper.IntFromMSBHexString(packet.Substring(20, 2));
-            int STAC1_IceJacketTempInt = PluginHelper.IntFromMSBHexString(packet.Substring(22, 1));
-            int STAC1_AltStatusInt     = PluginHelper.IntFromMSBHexString(packet.Substring(23, 1));
+            int STAC1_300Int           = PluginHelper.IntFromMSBHexString(packet.Substring(12, 2));
+            int STAC1_300_500Int       = PluginHelper.IntFromMSBHexString(packet.Substring(14, 1));
+            int STAC1_500_700Int       = PluginHelper.IntFromMSBHexString(packet.Substring(15, 1));
+            int STAC1_700_1000Int      = PluginHelper.IntFromMSBHexString(packet.Substring(16, 1));
+            int STAC1_1000_3000Int     = PluginHelper.IntFromMSBHexString(packet.Substring(17, 1));
+            int STAC1_Pump1Int         = PluginHelper.IntFromMSBHexString(packet.Substring(18, 1));
+            int STAC1_Pump2Int         = PluginHelper.IntFromMSBHexString(packet.Substring(19, 1));
+            int STAC1_Pump1_2TempInt   = PluginHelper.IntFromMSBHexString(packet.Substring(20, 1));
+            int STAC1_VBatInt          = PluginHelper.IntFromMSBHexString(packet.Substring(21, 1));
+            int STAC1_SatTempInt       = PluginHelper.IntFromMSBHexString(packet.Substring(22, 2));
+            int STAC1_IceJacketTempInt = PluginHelper.IntFromMSBHexString(packet.Substring(24, 1));
+            int STAC1_AltStatusInt     = PluginHelper.IntFromMSBHexString(packet.Substring(25, 1));
 
-            int STAC2_300Int           = PluginHelper.IntFromMSBHexString(packet.Substring(24, 2));
-            int STAC2_300_500Int       = PluginHelper.IntFromMSBHexString(packet.Substring(26, 1));
-            int STAC2_500_700Int       = PluginHelper.IntFromMSBHexString(packet.Substring(27, 1));
-            int STAC2_700_1000Int      = PluginHelper.IntFromMSBHexString(packet.Substring(28, 1));
-            int STAC2_1000_3000Int     = PluginHelper.IntFromMSBHexString(packet.Substring(29, 1));
-            int STAC2_Pump1Int         = PluginHelper.IntFromMSBHexString(packet.Substring(30, 1));
-            int STAC2_Pump2Int         = PluginHelper.IntFromMSBHexString(packet.Substring(31, 1));
-            int STAC2_Pump1_2TempInt   = PluginHelper.IntFromMSBHexString(packet.Substring(32, 1));
-            int STAC2_VBatInt          = PluginHelper.IntFromMSBHexString(packet.Substring(33, 1));
-            int STAC2_SatTempInt       = PluginHelper.IntFromMSBHexString(packet.Substring(34, 2));
-            int STAC2_CondenserTempInt = PluginHelper.IntFromMSBHexString(packet.Substring(36, 1));
+            int STAC2_300Int           = PluginHelper.IntFromMSBHexString(packet.Substring(26, 2));
+            int STAC2_300_500Int       = PluginHelper.IntFromMSBHexString(packet.Substring(28, 1));
+            int STAC2_500_700Int       = PluginHelper.IntFromMSBHexString(packet.Substring(29, 1));
+            int STAC2_700_1000Int      = PluginHelper.IntFromMSBHexString(packet.Substring(30, 1));
+            int STAC2_1000_3000Int     = PluginHelper.IntFromMSBHexString(packet.Substring(31, 1));
+            int STAC2_Pump1Int         = PluginHelper.IntFromMSBHexString(packet.Substring(32, 1));
+            int STAC2_Pump2Int         = PluginHelper.IntFromMSBHexString(packet.Substring(33, 1));
+            int STAC2_Pump1_2TempInt   = PluginHelper.IntFromMSBHexString(packet.Substring(34, 1));
+            int STAC2_VBatInt          = PluginHelper.IntFromMSBHexString(packet.Substring(35, 1));
+            int STAC2_SatTempInt       = PluginHelper.IntFromMSBHexString(packet.Substring(36, 2));
+            int STAC2_CondenserTempInt = PluginHelper.IntFromMSBHexString(packet.Substring(37, 1));
 
-            int HI_UpstreamTempInt   = PluginHelper.IntFromMSBHexString(packet.Substring(37, 1));
-            int HI_MidstreamTempInt  = PluginHelper.IntFromMSBHexString(packet.Substring(38, 1));
-            int HI_DownstreamTempInt = PluginHelper.IntFromMSBHexString(packet.Substring(39, 1));
-            int HI_VBatInt           = PluginHelper.IntFromMSBHexString(packet.Substring(40, 1));
+            int HI_UpstreamTempInt   = PluginHelper.IntFromMSBHexString(packet.Substring(38, 1));
+            int HI_MidstreamTempInt  = PluginHelper.IntFromMSBHexString(packet.Substring(39, 1));
+            int HI_DownstreamTempInt = PluginHelper.IntFromMSBHexString(packet.Substring(40, 1));
+            int HI_VBatInt           = PluginHelper.IntFromMSBHexString(packet.Substring(41, 1));
 
-            STAC1_300  =                   STAC1_300Int/(Stac1FlowRate*1000.0/30.0);
-            STAC1_500  = STAC1_300  -  STAC1_300_500Int/(Stac1FlowRate*1000.0/30.0);
+            STAC1_300 = STAC1_300Int / (Stac1FlowRate * 1000.0 / 30.0);
+            STAC1_300 = STAC1_300Int;
+            STAC1_500 = STAC1_300  -  STAC1_300_500Int/(Stac1FlowRate*1000.0/30.0);
             STAC1_700  = STAC1_500  -  STAC1_500_700Int/(Stac1FlowRate*1000.0/30.0);
             STAC1_1000 = STAC1_700  -  STAC1_700_1000Int/(Stac1FlowRate*1000.0/30.0);
             STAC1_3000 = STAC1_1000 - STAC1_1000_3000Int/(Stac1FlowRate * 1000.0 / 30.0);
